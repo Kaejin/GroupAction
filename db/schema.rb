@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314122700) do
+ActiveRecord::Schema.define(version: 20170314140409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 20170314122700) do
   create_table "direct_donations", force: :cascade do |t|
     t.float    "amount"
     t.integer  "user_id"
-    t.integer  "fundraising_event_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["fundraising_event_id"], name: "index_direct_donations_on_fundraising_event_id", using: :btree
+    t.integer  "fundraiser_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["fundraiser_id"], name: "index_direct_donations_on_fundraiser_id", using: :btree
     t.index ["user_id"], name: "index_direct_donations_on_user_id", using: :btree
   end
 
@@ -38,18 +38,23 @@ ActiveRecord::Schema.define(version: 20170314122700) do
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.integer  "fundraising_event_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["fundraising_event_id"], name: "index_events_on_fundraising_event_id", using: :btree
+    t.integer  "fundraiser_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.index ["fundraiser_id"], name: "index_events_on_fundraiser_id", using: :btree
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
   end
 
-  create_table "fundraising_events", force: :cascade do |t|
+  create_table "fundraisers", force: :cascade do |t|
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_fundraising_events_on_user_id", using: :btree
+    t.string   "title"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.index ["user_id"], name: "index_fundraisers_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,11 +76,11 @@ ActiveRecord::Schema.define(version: 20170314122700) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "direct_donations", "fundraising_events"
+  add_foreign_key "direct_donations", "fundraisers"
   add_foreign_key "direct_donations", "users"
   add_foreign_key "event_donations", "events"
   add_foreign_key "event_donations", "users"
-  add_foreign_key "events", "fundraising_events"
+  add_foreign_key "events", "fundraisers"
   add_foreign_key "events", "users"
-  add_foreign_key "fundraising_events", "users"
+  add_foreign_key "fundraisers", "users"
 end

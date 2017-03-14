@@ -3,7 +3,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
     create_table :events do |t|
       t.string :title
       t.references :user, foreign_key: true
-      t.references :fundraising_event, foreign_key: true
+      t.references :fundraiser, foreign_key: true
 
       t.timestamps
     end
