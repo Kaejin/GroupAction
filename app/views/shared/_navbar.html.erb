@@ -1,79 +1,55 @@
 <div class="GroupAction-navbar" id="hover-nav">
 
-  <div class="navbar-GroupAction-sides no-wrap">
 
+  <!-- left side of navbar -->
+  <div class="left-side-navbar">
 
-  <div>
-    <% if !user_signed_in? %>
-      <div class="sign-up-btn">
-        <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
-      </div>
-    <% end %>
+    <div class="navbar-GroupAction-sides no-wrap">
+    <div>
+      <% if !user_signed_in? %>
+        <div class="sign-up-btn">
+          <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+        </div>
+      <% else %>
+        <div class="sign-up-btn">
+          <p>thing 1</p>
+        </div>
+      <% end %>
+    </div>
+
+    <div>
+      <% if !user_signed_in? %>
+        <div class="sign-up-btn">
+          <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+        </div>
+        <% else %>
+          <div class="sign-up-btn">
+            <p>thing 2</p>
+          </div>
+        <% end %>
+    </div>
+
+    </div>
+
   </div>
 
-  <div>
-    <% if !user_signed_in? %>
-      <div class="sign-up-btn">
-        <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
-      </div>
-    <% end %>
-  </div>
 
-  </div>
 
 
 
 
   <!-- Logo -->
-  <div class="navbar-GroupAction-sides">
+  <div class="navbar-GroupAction-sides text-center">
     <div>
       <%= link_to root_path, class: "navbar-GroupAction-brand hidden-xs" do %>
         <%= image_tag "logo.png" %>
       <% end %>
     </div>
-    <div>
-      <%= link_to root_path, class: "small-GroupAction-brand visible-xs" do %>
-      <%= image_tag "logo.png" %>
-    </div>
   </div>
-  <% end %>
+
   <!-- end logo -->
 
-  <!-- left side of navbar -->
-  <div class="left-side-navbar">
-    <div class="navbar-GroupAction-sides hidden-xs hidden-sm">
-      <div class="navbar-GroupAction-item navbar-GroupAction-link">
-        <% if user_signed_in? %>
-          <div class="navbar-GroupAction-item" style="margin-left: 20px">
-          <!-- SEARCH -->
-            <%= link_to events_path do %>
-            search
-              <!-- <i class="fa fa-search" style="font-size: 40px"></i> -->
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <div class="navbar-GroupAction-item navbar-GroupAction-link">
-        <% if user_signed_in? %>
-          <div class="navbar-GroupAction-item" style="margin-left: 20px">
-          <!-- NEW EVENT -->
-            <%= link_to new_event_path do %>
-              create event
-              <!-- <i class="fa fa-plus" style="font-size: 40px"></i> -->
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <!-- <div class="navbar-GroupAction-item navbar-GroupAction-link"> -->
-        <%# if user_signed_in? %>
-        <!-- CAPTAIN MENU -->
-          <!-- <div class="navbar-GroupAction-item" style="margin-left: 20px"> -->
-            <%#= link_to "captain", "#", class: "hvr-grow toggle-captain" %>
-          <!-- </div> -->
-        <%# end %>
-      <!-- </div> -->
-    </div>
-  </div>
+
   <!-- end of left side -->
 
   <!-- right side of navbar -->
@@ -89,18 +65,12 @@
       </div> -->
       <!-- PROFILE -->
       <div class="navbar-GroupAction-item navbar-GroupAction-link">
-        <% if user_signed_in? %>
-          <div class="navbar-GroupAction-item" style="margin-left: 20px">
-            <%= link_to "log out", destroy_user_session_path, method: :delete %>
-          </div>
-        <% end %>
+
       </div>
       <div class="navbar-GroupAction-item navbar-GroupAction-link">
         <% if user_signed_in? %>
         <!-- MESSAGES -->
-          <div class="navbar-GroupAction-item" style="margin-left: 20px">
 
-          </div>
         <% end %>
       </div>
     </div>
@@ -111,6 +81,10 @@
         <% if !user_signed_in? %>
       <div class="sign-in-btn">
         <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+      </div>
+      <% else %>
+        <div class="sign-in-btn no-wrap">
+        <%= link_to "log out", destroy_user_session_path, method: :delete, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
       </div>
     <% end %>
 
