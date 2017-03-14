@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20170314140409) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "title"
-    t.date     "start_date"
     t.date     "end_date"
     t.index ["user_id"], name: "index_fundraisers_on_user_id", using: :btree
   end
