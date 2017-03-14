@@ -1,5 +1,29 @@
 <div class="GroupAction-navbar" id="hover-nav">
 
+  <div class="navbar-GroupAction-sides no-wrap">
+
+
+  <div>
+    <% if !user_signed_in? %>
+      <div class="sign-up-btn">
+        <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <% if !user_signed_in? %>
+      <div class="sign-up-btn">
+        <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+      </div>
+    <% end %>
+  </div>
+
+  </div>
+
+
+
+
   <!-- Logo -->
   <div class="navbar-GroupAction-sides">
     <div>
@@ -67,9 +91,7 @@
       <div class="navbar-GroupAction-item navbar-GroupAction-link">
         <% if user_signed_in? %>
           <div class="navbar-GroupAction-item" style="margin-left: 20px">
-            <%= link_to "#", class: "hvr-grow toggle-profile" do%>
-                my profile
-            <% end %>
+            <%= link_to "log out", destroy_user_session_path, method: :delete %>
           </div>
         <% end %>
       </div>
@@ -78,43 +100,24 @@
         <!-- MESSAGES -->
           <div class="navbar-GroupAction-item" style="margin-left: 20px">
 
-            <%= link_to "#", class: "hvr-grow toggle-messages" do %>
-              <!-- <i class="fa fa-envelope-o" style="font-size: 40px"></i> -->
-              <% if user_signed_in? && (unread_messages + current_user.notifications.count != 0) %>
-               messages  (<%= unread_messages + current_user.notifications.count %>)
-               <% else %>
-               messages
-               <% end %>
-
-            <% end %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 
-  <div>
-    <% if !user_signed_in? %>
+<div>
+
+        <% if !user_signed_in? %>
       <div class="sign-in-btn">
         <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
       </div>
     <% end %>
-  </div>
+
+</div>
 
 
   <!-- Dropdown list appearing on mobile only -->
-  <% if user_signed_in? %>
-    <div class="navbar-GroupAction-item hidden-md hidden-lg" style="position: absolute; right: 10px;">
-      <div class="dropdown">
-        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-        <ul class="dropdown-menu dropdown-menu-sides navbar-GroupAction-dropdown-menu dropdown-menu-right">
-            <li><%= link_to "my profile", my_profile_path %></li>
-            <li><%= link_to "messages", chat_rooms_path %></li>
-            <li><%= link_to "notifications", notifications_path %></li>
-            <li><%= link_to "log out", destroy_user_session_path, method: :delete %></li>
-        </ul>
-      </div>
-    </div>
-  <% end %>
+
 
 </div>
