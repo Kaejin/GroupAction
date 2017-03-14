@@ -2,11 +2,13 @@ class FundraisersController < ApplicationController
   before_action :set_fundraiser, only: [:show, :edit, :update]
 
   def index
-    @fundraisers = Fundraiser.all
+    @fundraisers = policy_scope(Fundraiser).order(:updated_at)
+    authorize @fundraisers
   end
 
   def new
     @fundraiser = Fundraiser.new
+    authorize @fundraiser
   end
 
   def create
@@ -27,6 +29,7 @@ class FundraisersController < ApplicationController
   end
 
   def update
+
     if @fundraiser.update(fundraiser_params)
       redirect_to fundraiser_path(@fundraiser)
     else
@@ -41,6 +44,7 @@ class FundraisersController < ApplicationController
 
   def set_fundraiser
     @fundraiser = Fundraiser.find(params[:id])
+    authorize @fundraiser
   end
 
   def fundraiser_params
