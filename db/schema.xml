@@ -68,77 +68,74 @@
                   <datatype>INTEGER</datatype>
                   <default>NULL</default><relation table="User" row="id" />
                 </row>
-                <row name="start_date" null="1" autoincrement="0">
+                <row name="end_date" null="1" autoincrement="0">
                   <datatype>DATE</datatype>
                   <default>NULL</default></row>
-                  <row name="end_date" null="1" autoincrement="0">
-                    <datatype>DATE</datatype>
+                  <key type="PRIMARY" name="">
+                    <part>id</part>
+                  </key>
+                </table>
+                <table x="457" y="29" name="event_donation">
+                  <row name="id" null="1" autoincrement="1">
+                    <datatype>INTEGER</datatype>
                     <default>NULL</default></row>
-                    <key type="PRIMARY" name="">
-                      <part>id</part>
-                    </key>
-                  </table>
-                  <table x="457" y="29" name="event_donation">
-                    <row name="id" null="1" autoincrement="1">
+                    <row name="user_id" null="1" autoincrement="0">
                       <datatype>INTEGER</datatype>
+                      <default>NULL</default><relation table="User" row="id" />
+                    </row>
+                    <row name="event_id" null="1" autoincrement="0">
+                      <datatype>INTEGER</datatype>
+                      <default>NULL</default><relation table="Event" row="id" />
+                    </row>
+                    <row name="amount" null="1" autoincrement="0">
+                      <datatype>DECIMAL</datatype>
                       <default>NULL</default></row>
-                      <row name="user_id" null="1" autoincrement="0">
+                      <key type="PRIMARY" name="">
+                        <part>id</part>
+                      </key>
+                    </table>
+                    <table x="813" y="33" name="Event">
+                      <row name="id" null="1" autoincrement="1">
                         <datatype>INTEGER</datatype>
-                        <default>NULL</default><relation table="User" row="id" />
-                      </row>
-                      <row name="event_id" null="1" autoincrement="0">
-                        <datatype>INTEGER</datatype>
-                        <default>NULL</default><relation table="Event" row="id" />
-                      </row>
-                      <row name="amount" null="1" autoincrement="0">
-                        <datatype>DECIMAL</datatype>
                         <default>NULL</default></row>
-                        <key type="PRIMARY" name="">
-                          <part>id</part>
-                        </key>
-                      </table>
-                      <table x="813" y="33" name="Event">
-                        <row name="id" null="1" autoincrement="1">
+                        <row name="title" null="1" autoincrement="0">
                           <datatype>INTEGER</datatype>
                           <default>NULL</default></row>
-                          <row name="title" null="1" autoincrement="0">
+                          <row name="user_id" null="1" autoincrement="0">
                             <datatype>INTEGER</datatype>
+                            <default>NULL</default><relation table="User" row="id" />
+                          </row>
+                          <row name="fundraiser_id" null="1" autoincrement="0">
+                            <datatype>INTEGER</datatype>
+                            <default>NULL</default><relation table="Fundraiser" row="id" />
+                          </row>
+                          <row name="start_datetime" null="1" autoincrement="0">
+                            <datatype>DATETIME</datatype>
                             <default>NULL</default></row>
-                            <row name="user_id" null="1" autoincrement="0">
-                              <datatype>INTEGER</datatype>
-                              <default>NULL</default><relation table="User" row="id" />
-                            </row>
-                            <row name="fundraiser_id" null="1" autoincrement="0">
-                              <datatype>INTEGER</datatype>
-                              <default>NULL</default><relation table="Fundraiser" row="id" />
-                            </row>
-                            <row name="start_datetime" null="1" autoincrement="0">
+                            <row name="end_datetime" null="1" autoincrement="0">
                               <datatype>DATETIME</datatype>
                               <default>NULL</default></row>
-                              <row name="end_datetime" null="1" autoincrement="0">
-                                <datatype>DATETIME</datatype>
+                              <key type="PRIMARY" name="">
+                                <part>id</part>
+                              </key>
+                            </table>
+                            <table x="643" y="227" name="direct_donation">
+                              <row name="id" null="1" autoincrement="1">
+                                <datatype>INTEGER</datatype>
                                 <default>NULL</default></row>
-                                <key type="PRIMARY" name="">
-                                  <part>id</part>
-                                </key>
-                              </table>
-                              <table x="643" y="227" name="direct_donation">
-                                <row name="id" null="1" autoincrement="1">
+                                <row name="fundraiser_id" null="1" autoincrement="0">
                                   <datatype>INTEGER</datatype>
+                                  <default>NULL</default><relation table="Fundraiser" row="id" />
+                                </row>
+                                <row name="user_id" null="1" autoincrement="0">
+                                  <datatype>INTEGER</datatype>
+                                  <default>NULL</default><relation table="User" row="id" />
+                                </row>
+                                <row name="amount" null="1" autoincrement="0">
+                                  <datatype>DECIMAL</datatype>
                                   <default>NULL</default></row>
-                                  <row name="fundraiser_id" null="1" autoincrement="0">
-                                    <datatype>INTEGER</datatype>
-                                    <default>NULL</default><relation table="Fundraiser" row="id" />
-                                  </row>
-                                  <row name="user_id" null="1" autoincrement="0">
-                                    <datatype>INTEGER</datatype>
-                                    <default>NULL</default><relation table="User" row="id" />
-                                  </row>
-                                  <row name="amount" null="1" autoincrement="0">
-                                    <datatype>DECIMAL</datatype>
-                                    <default>NULL</default></row>
-                                    <key type="PRIMARY" name="">
-                                      <part>id</part>
-                                    </key>
-                                  </table>
-                                </sql>
+                                  <key type="PRIMARY" name="">
+                                    <part>id</part>
+                                  </key>
+                                </table>
+                              </sql>
