@@ -1,6 +1,9 @@
 <%= simple_form_for @event do |f| %>
-  <%= f.collection_select :fundraiser_id, Fundraiser.order(:title), :id, :title, include_blank: false %>
+<%= render 'shared/error_messages', object: f.object %>
   <%= f.input :title %>
+  <%= f.input :start_datetime %>
+  <%= f.input :end_datetime %>
 
   <%= f.submit %>
 <% end %>
+
