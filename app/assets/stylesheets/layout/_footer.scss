@@ -1,1 +1,43 @@
+
+.footer {
+  background-color: white;
+  height: 80px;
+  // position: absolute;
+  // bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+.fa {
+  color: black;
+}
+.fa:hover {
+  color: red;
+}
+}
+
+.footer-items{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+  color: black;
+}
+
+.item{
+  margin: 10px;
+}
+
+.footer-icon{
+  margin: 20px;
+  font-size: 30px;
+}
+
+.footer_link {
+  color: black;
+}
+
+.footer_link:hover {
+  color: red;
+}
 // Your footer style

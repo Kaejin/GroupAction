@@ -1,4 +1,95 @@
-/* -------------------------------------
- * CSS code specific to home page
- * (margin/padding adjustments)
- * ------------------------------------- */
+.home-banner {
+  height: calc(100vmin - 150px);
+}
+
+#sport-form {
+  padding-left: 25px;
+  padding-right: 25px;
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+      font-size: 15px;
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+     font-size: 15px;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+     font-size: 15px;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+     font-size: 15px;
+  }
+.form-control {
+  // background-color: #f5a7a3;
+  border: none;
+  border-radius: 2px;
+  border-bottom: 2px solid black;
+  // color: white;
+  input {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  text-align: center;
+  &:focus {
+    box-shadow: none;
+    border: none;
+    outline: none;
+  }
+  }
+}
+
+  #sports, #missing_player {
+    height: 40px;
+    // background-color: #f5a7a3;
+    border: none;
+    // color: white;
+  }
+
+  .sport-form-submit {
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    border: none;
+  }
+}
+
+.home-container{
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+}
+
+.bigscreen-image-banner {
+  height: 50vh;
+  padding: 0;
+  margin: 0;
+  color: white;
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: bolder;
+    letter-spacing: -1px;
+  }
+  // .image-banner-contents {
+  //   text-align: center;
+  //   h1 {
+  //     font-family: $base-font;
+  //     // border: 2px solid white;
+  //     font-size: 6vmin;
+  //     padding: 3vmin;
+  //     margin: 0;
+  //     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  //     margin-top: 20%;
+  //   }
+  //   .find-player-btn {
+  //     margin-top: 30px;
+  //     font-size: 2em;
+  //     border-radius: 10px;
+  //   }
+  // }
+}
