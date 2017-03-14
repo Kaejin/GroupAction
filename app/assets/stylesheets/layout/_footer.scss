@@ -7,12 +7,12 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  color: black;
+  color: $brand-color;
 .fa {
-  color: black;
+  color: $brand-color;
 }
 .fa:hover {
-  color: red;
+  color: black;
 }
 }
 
@@ -21,7 +21,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 20px;
-  color: black;
+  color: $brand-color;
 }
 
 .item{
@@ -34,10 +34,10 @@
 }
 
 .footer_link {
-  color: black;
+  color: $brand-color;
 }
 
 .footer_link:hover {
-  color: red;
+  color: black;
 }
 // Your footer style

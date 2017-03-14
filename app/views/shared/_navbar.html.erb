@@ -1,76 +1,120 @@
-<div class="navbar-wagon">
+<div class="GroupAction-navbar" id="hover-nav">
+
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
-  <% end %>
-
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-    <!-- Search form -->
-    <form action="" class="navbar-wagon-search">
-      <input type="text" class="navbar-wagon-search-input" placeholder="Search something">
-      <button type="submit" class="navbar-wagon-search-btn">
-        <i class="fa fa-search"></i>
-      </button>
-    </form>
-
-    <!-- Different navigation if login or not -->
-    <% if user_signed_in? %>
-
-      <!-- Notification -->
-      <%= link_to "#", class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-          <i class="fa fa-envelope-o"></i>
-          <div class="badge badge-blue">3</div>
-        </div>
+  <div class="navbar-GroupAction-sides">
+    <div>
+      <%= link_to root_path, class: "navbar-GroupAction-brand hidden-xs" do %>
+        <%= image_tag "logo.png" %>
       <% end %>
-
-      <!-- Profile picture and dropdown -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <%= image_tag "http://placehold.it/30x30", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-    <% else %>
-
-      <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
-    <% end %>
-
-    <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
-  </div>
-
-  <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
+    </div>
+    <div>
+      <%= link_to root_path, class: "small-GroupAction-brand visible-xs" do %>
+      <%= image_tag "logo.png" %>
     </div>
   </div>
-</div>
+  <% end %>
+  <!-- end logo -->
 
+  <!-- left side of navbar -->
+  <div class="left-side-navbar">
+    <div class="navbar-GroupAction-sides hidden-xs hidden-sm">
+      <div class="navbar-GroupAction-item navbar-GroupAction-link">
+        <% if user_signed_in? %>
+          <div class="navbar-GroupAction-item" style="margin-left: 20px">
+          <!-- SEARCH -->
+            <%= link_to events_path do %>
+            search
+              <!-- <i class="fa fa-search" style="font-size: 40px"></i> -->
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="navbar-GroupAction-item navbar-GroupAction-link">
+        <% if user_signed_in? %>
+          <div class="navbar-GroupAction-item" style="margin-left: 20px">
+          <!-- NEW EVENT -->
+            <%= link_to new_event_path do %>
+              create event
+              <!-- <i class="fa fa-plus" style="font-size: 40px"></i> -->
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <!-- <div class="navbar-GroupAction-item navbar-GroupAction-link"> -->
+        <%# if user_signed_in? %>
+        <!-- CAPTAIN MENU -->
+          <!-- <div class="navbar-GroupAction-item" style="margin-left: 20px"> -->
+            <%#= link_to "captain", "#", class: "hvr-grow toggle-captain" %>
+          <!-- </div> -->
+        <%# end %>
+      <!-- </div> -->
+    </div>
+  </div>
+  <!-- end of left side -->
+
+  <!-- right side of navbar -->
+  <div class="right-side-navbar">
+    <div class="navbar-GroupAction-sides hidden-xs hidden-sm">
+      <!-- <div class="navbar-GroupAction-item navbar-GroupAction-link">
+        <%# if user_signed_in? %>
+          <div class="navbar-GroupAction-item">
+          PLAYER MENU
+            <%#= link_to "player", "#", class: "hvr-grow toggle-player" %>
+          </div>
+        <%# end %>
+      </div> -->
+      <!-- PROFILE -->
+      <div class="navbar-GroupAction-item navbar-GroupAction-link">
+        <% if user_signed_in? %>
+          <div class="navbar-GroupAction-item" style="margin-left: 20px">
+            <%= link_to "#", class: "hvr-grow toggle-profile" do%>
+                my profile
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="navbar-GroupAction-item navbar-GroupAction-link">
+        <% if user_signed_in? %>
+        <!-- MESSAGES -->
+          <div class="navbar-GroupAction-item" style="margin-left: 20px">
+
+            <%= link_to "#", class: "hvr-grow toggle-messages" do %>
+              <!-- <i class="fa fa-envelope-o" style="font-size: 40px"></i> -->
+              <% if user_signed_in? && (unread_messages + current_user.notifications.count != 0) %>
+               messages  (<%= unread_messages + current_user.notifications.count %>)
+               <% else %>
+               messages
+               <% end %>
+
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <% if !user_signed_in? %>
+      <div class="sign-in-btn">
+        <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+      </div>
+    <% end %>
+  </div>
+
+
+  <!-- Dropdown list appearing on mobile only -->
+  <% if user_signed_in? %>
+    <div class="navbar-GroupAction-item hidden-md hidden-lg" style="position: absolute; right: 10px;">
+      <div class="dropdown">
+        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-sides navbar-GroupAction-dropdown-menu dropdown-menu-right">
+            <li><%= link_to "my profile", my_profile_path %></li>
+            <li><%= link_to "messages", chat_rooms_path %></li>
+            <li><%= link_to "notifications", notifications_path %></li>
+            <li><%= link_to "log out", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+</div>
