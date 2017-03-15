@@ -25,12 +25,15 @@ class EventsController < ApplicationController
   end
 
   def show
+    authorize @event
   end
 
   def edit
+    authorize @event
   end
 
   def update
+    authorize @event
     if @event.update(event_params)
       redirect_to event_path(@event)
     else
