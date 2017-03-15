@@ -1,5 +1,5 @@
 <ul>
   <% @fundraisers.each do |fundraiser| %>
-    <li> <%= fundraiser.title %> </li>
+    <li> <%= link_to fundraiser.title, fundraiser_path(fundraiser) %> </li>
   <% end %>
 </ul>

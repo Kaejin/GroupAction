@@ -2,5 +2,17 @@
 <%= @fundraiser.title %>
 </h1>
 <h2>
+<%= @fundraiser.target %>
+</h2>
+<h2>
+<%= @fundraiser.amount_raised %>
+</h2>
+<h2>
   <%= @fundraiser.end_date %>
 </h2>
+<p>Donate to fundraiser?</p>
+<%= render 'direct_donations/form', fundraiser: @fundraiser, direct_donation: DirectDonation.new %>
+<% @fundraiser.direct_donations.each do |donation| %>
+<%= donation.amount %>
+<% end %>
+
