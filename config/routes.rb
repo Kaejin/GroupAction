@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   resources :fundraisers, only: [:index, :new, :create, :show, :edit, :update] do
     resources :direct_donations, only: [:index, :new, :create, :show, :edit, :update]
+    resources :events, only: [:index, :new, :create, :show, :edit, :update] do
+      resources :event_donations, only: [:new, :create, :show]
+    end
   end
-
-  resources :events, only: [:index, :new, :create, :show, :edit, :update]
-  resources :event_donations, only: [:new, :create, :show]
 end

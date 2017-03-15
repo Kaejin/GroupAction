@@ -1,5 +1,4 @@
-<%= simple_form_for @event_donation do |f| %>
-
-  <%= f.input :amount %>
-  <%= f.submit %>
+<%= simple_form_for [fundraiser, event, event_donation] do |f| %>
+<%= f.input :amount %>
+<%= f.submit %>
 <% end %>
