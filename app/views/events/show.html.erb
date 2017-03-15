@@ -1,2 +1,10 @@
 <%= @event.title %>
-<%= link_to "Delete", @event, method: :destroy%>
+
+<%= link_to "Delete", @event, method: :destroy %>
+
+<p>Donate to fundraiser through event?</p>
+<%= render 'event_donations/form', fundraiser: @fundraiser, event: @event, event_donation: EventDonation.new %>
+
+<% @event.event_donations.each do |event| %>
+<%= event.amount  %>
+<% end %>

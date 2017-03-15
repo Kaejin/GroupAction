@@ -9,11 +9,11 @@ class EventDonationsController < ApplicationController
   def create
     @event_donation = EventDonation.create(event_donation_params)
     @event_donation.user = current_user
-    # @event_donation.event = Need to get event
+    @event_donation.event = Event.find(params[:event_id])
     authorize @event_donation
 
     if @event_donation.save
-      redirect_to event_donation_path(@event_donation)
+      redirect_to fundraiser_event_path(@event_donation.event.fundraiser, @event_donation.event)
     else
       render :new
     end

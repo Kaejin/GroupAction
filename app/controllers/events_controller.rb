@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_fundraiser, only: [:new, :create, :show]
 
   def index
     @events = policy_scope(Event).order(:updated_at)
@@ -16,9 +17,10 @@ class EventsController < ApplicationController
     authorize @event
 
     @event.user = current_user
+    @event.fundraiser = @fundraiser
 
     if @event.save
-      redirect_to event_path(@event)
+      redirect_to fundraiser_event_path(@fundraiser, @event)
     else
       render :new
     end
@@ -35,7 +37,7 @@ class EventsController < ApplicationController
   def update
     authorize @event
     if @event.update(event_params)
-      redirect_to event_path(@event)
+      redirect_to fundraiser_event_path(@fundraiser, @event)
     else
       render :new
     end
@@ -46,6 +48,11 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def set_fundraiser
+    @fundraiser = Fundraiser.find(params[:fundraiser_id])
+  end
+
 
   def set_event
     @event = Event.find(params[:id])
