@@ -45,6 +45,11 @@ class EventsController < ApplicationController
 
   def destroy
     authorize @event
+    if @event.update(active: false)
+      redirect_to fundraiser_event_path
+    else
+      render :new
+    end
   end
 
   private
@@ -55,6 +60,8 @@ class EventsController < ApplicationController
 
 
   def set_event
+    # @event = params[:event_id].present? ? Event.find(params[:event_id]) : Event.find(params[:id])
+
     @event = Event.find(params[:id])
   end
 

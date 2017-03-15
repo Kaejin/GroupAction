@@ -30,7 +30,6 @@ class EventPolicy < ApplicationPolicy
   end
 
   def destroy?
-    raise
-    record.user == user
+    record.user == user && record.event_donations.empty?
   end
 end
