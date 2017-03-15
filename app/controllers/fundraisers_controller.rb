@@ -14,6 +14,7 @@ class FundraisersController < ApplicationController
   def create
     @fundraiser = Fundraiser.create(fundraiser_params)
     @fundraiser.user = current_user
+    authorize @fundraiser
 
     if @fundraiser.save
       redirect_to fundraiser_path(@fundraiser)
