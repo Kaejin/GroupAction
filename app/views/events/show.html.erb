@@ -1,10 +1,20 @@
 <%= @event.title %>
 
+<% # Only shown if event is active %>
+<% if @event.active %>
+  <p>Donate to fundraiser through event?</p>
+  <%= render 'event_donations/form', fundraiser: @fundraiser, event: @event, event_donation: EventDonation.new %>
+  <br>
 
+  <% # Delete button is only shown if no donations are present %>
+  <% if @event.event_donations.empty? %>
+    <%= link_to "Delete", fundraiser_event_event_destroy_path(@fundraiser, @event), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+  <% end %>
 
-<p>Donate to fundraiser through event?</p>
-<%= render 'event_donations/form', fundraiser: @fundraiser, event: @event, event_donation: EventDonation.new %>
+<% else %>
+  <h3>Donations closed sorry</h3>
+<% end %>
 
 <% @event.event_donations.each do |event| %>
-<%= event.amount  %>
+  <%= event.amount  %>
 <% end %>
