@@ -25,12 +25,15 @@ class EventsController < ApplicationController
   end
 
   def show
+    authorize @event
   end
 
   def edit
+    authorize @event
   end
 
   def update
+    authorize @event
     if @event.update(event_params)
       redirect_to event_path(@event)
     else
@@ -48,6 +51,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:user_id, :fundraiser_id, :title, :start_datetime, :end_datetime)
+    params.require(:event).permit(:user_id, :fundraiser_id, :title, :start_date)
   end
 end

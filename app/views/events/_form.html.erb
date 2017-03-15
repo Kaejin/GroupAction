@@ -1,8 +1,7 @@
 <%= simple_form_for @event do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
   <%= f.input :title %>
-  <%= f.input :start_datetime %>
-  <%= f.input :end_datetime %>
+  <%= f.input :start_date %>
 
   <%= f.submit %>
 <% end %>

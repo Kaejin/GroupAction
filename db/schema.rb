@@ -39,10 +39,9 @@ ActiveRecord::Schema.define(version: 20170315110312) do
     t.string   "title"
     t.integer  "user_id"
     t.integer  "fundraiser_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.datetime "start_datetime"
-    t.datetime "end_datetime"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.date     "start_date"
     t.index ["fundraiser_id"], name: "index_events_on_fundraiser_id", using: :btree
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
   end
@@ -73,7 +72,7 @@ ActiveRecord::Schema.define(version: 20170315110312) do
     t.datetime "updated_at",                             null: false
     t.boolean  "is_charity",             default: false
     t.boolean  "verified",               default: false
-    t.boolean  "admin"
+    t.boolean  "admin",                  default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
