@@ -19,6 +19,8 @@ gem 'autoprefixer-rails'
 
 # Manually Added Gems
 gem "pundit"
+gem 'remotipart', github: 'mshibuya/remotipart'
+gem 'rails_admin', '>= 1.0.0.rc'
 
 group :development, :test do
   gem 'binding_of_caller'
