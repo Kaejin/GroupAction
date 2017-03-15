@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
     @events = policy_scope(Event).order(:updated_at)
@@ -42,6 +42,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    authorize @event
   end
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315110312) do
+ActiveRecord::Schema.define(version: 20170315125752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,21 +39,23 @@ ActiveRecord::Schema.define(version: 20170315110312) do
     t.string   "title"
     t.integer  "user_id"
     t.integer  "fundraiser_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.date     "start_date"
+    t.boolean  "active",        default: true
     t.index ["fundraiser_id"], name: "index_events_on_fundraiser_id", using: :btree
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
   end
 
   create_table "fundraisers", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "title"
     t.date     "end_date"
     t.float    "target"
     t.float    "amount_raised", default: 0.0
+    t.boolean  "active",        default: true
     t.index ["user_id"], name: "index_fundraisers_on_user_id", using: :btree
   end
 
