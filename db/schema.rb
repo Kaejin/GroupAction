@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170314203133) do
     t.datetime "updated_at",                             null: false
     t.boolean  "is_charity",             default: false
     t.boolean  "verified",               default: false
-    t.boolean  "admin"
+    t.boolean  "admin",                  default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
