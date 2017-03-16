@@ -11,6 +11,7 @@
 
             <div class="form-inputs">
               <%= f.input :email, required: true, autofocus: true %>
+              <%= f.hidden_field :is_charity, value: params[:is_charity] %>
               <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
               <%= f.input :password_confirmation, required: true %>
             </div>
@@ -19,6 +20,7 @@
               <%= f.button :submit, "Sign up", class: "btn btn-primary" %>
             </div>
           <% end %>
+
 
             <div class="text-center">
               <%= link_to "Already have an account? Log in", new_session_path(resource_name) %><br />

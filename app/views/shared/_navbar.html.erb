@@ -8,7 +8,7 @@
     <div>
       <% if !user_signed_in? %>
         <div class="sign-up-btn">
-          <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+          <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_registration_path(is_charity: true), class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
         </div>
       <% elsif current_user.is_charity? && current_user.verified? %>
         <div class="sign-up-btn">
@@ -24,7 +24,7 @@
     <div>
       <% if !user_signed_in? %>
         <div class="sign-up-btn">
-          <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+          <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
         </div>
         <% else %>
           <div class="sign-up-btn">
