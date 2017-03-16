@@ -1,20 +1,39 @@
-<%= @event.title %>
+<div class="container">
 
-<% # Only shown if event is active %>
-<% if @event.active %>
-  <p>Donate to fundraiser through event?</p>
-  <%= render 'event_donations/form', fundraiser: @fundraiser, event: @event, event_donation: EventDonation.new %>
-  <br>
+<!-- link back to the fundraiser -->
+  <%= link_to "back to fundraiser", fundraiser_path(@event.fundraiser) %>
 
-  <% # Delete button is only shown if no donations are present %>
-  <% if @event.event_donations.empty? %>
+  <!-- Delete button is only shown if no donations are present & current user is event owner -->
+  <% if @event.event_donations.empty? && @event.user == current_user %>
     <%= link_to "Delete", fundraiser_event_event_destroy_path(@fundraiser, @event), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
   <% end %>
 
-<% else %>
-  <h3>Donations closed sorry</h3>
-<% end %>
 
-<% @event.event_donations.each do |event| %>
-  <%= event.amount  %>
-<% end %>
+  <!-- basic information -->
+  <div>
+    <h2>   <%= @event.title %> -- <%= @event.total_raised %> raised of <%= @event.target %> target </h2>
+  </div>
+
+  <!-- event donations; only shown if event is active -->
+  <div>
+    <div class="form-box">
+      <% if @event.active %>
+        <p>Donate to fundraiser through event:</p>
+        <%= render 'event_donations/form', fundraiser: @fundraiser, event: @event, event_donation: EventDonation.new %>
+    </div>
+
+    <% else %>
+      <h3>Donations closed sorry</h3>
+    <% end %>
+  </div>
+
+  <!-- Prior event donations -->
+  <div>
+    <h2>Prior event donations</h2>
+    <% @event.event_donations.each do |donation| %>
+      <p> <%= donation.amount %> <%= donation.message %> </p>
+    <% end %>
+  </div>
+
+
+</div>

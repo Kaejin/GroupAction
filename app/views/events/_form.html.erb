@@ -1,6 +1,7 @@
 <%= simple_form_for [@fundraiser, @event] do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
   <%= f.input :title %>
+  <%= f.input :target %>
   <%= f.input :start_date %>
   <%= f.submit %>
 <% end %>

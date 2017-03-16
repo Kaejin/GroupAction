@@ -1,5 +1,16 @@
-<ul>
-  <% @fundraisers.each do |fundraiser| %>
-    <li> <%= link_to fundraiser.title, fundraiser_path(fundraiser) %> </li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+        <% @fundraisers.each do |fundraiser| %>
+    <div class="col-xs-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path 'logo.png' %>');">
+        <div class="card-category">
+          <%= fundraiser.title %>
+        </div>
+          <%= link_to "", fundraiser_path(fundraiser), class: "card-link" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
