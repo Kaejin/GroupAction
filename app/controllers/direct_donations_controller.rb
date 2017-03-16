@@ -45,7 +45,7 @@ class DirectDonationsController < ApplicationController
   end
 
   def direct_donation_params
-    params.require(:direct_donation).permit(:amount)
+    params.require(:direct_donation).permit(:amount, :message)
   end
 
 

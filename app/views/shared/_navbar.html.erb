@@ -10,6 +10,10 @@
         <div class="sign-up-btn">
           <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
         </div>
+      <% elsif current_user.is_charity? && current_user.verified? %>
+        <div class="sign-up-btn">
+          <%= link_to "Create a fundraiser", new_fundraiser_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+        </div>
       <% else %>
         <div class="sign-up-btn">
           <p>thing 1</p>

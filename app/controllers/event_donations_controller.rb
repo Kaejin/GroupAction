@@ -30,6 +30,6 @@ class EventDonationsController < ApplicationController
   end
 
   def event_donation_params
-    params.require(:event_donation).permit(:user_id, :event_id, :amount)
+    params.require(:event_donation).permit(:user_id, :event_id, :amount, :message)
   end
 end

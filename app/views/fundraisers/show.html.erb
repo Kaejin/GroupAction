@@ -1,19 +1,45 @@
-<h1>
-<%= @fundraiser.title %>
-</h1>
-<h2>
-<%= @fundraiser.target %>
-</h2>
-<h2>
-<%= @fundraiser.amount_raised %>
-</h2>
-<h2>
-  <%= @fundraiser.end_date %>
-</h2>
-<p>Donate to fundraiser?</p>
-<%= render 'direct_donations/form', fundraiser: @fundraiser, direct_donation: DirectDonation.new %>
-<% @fundraiser.direct_donations.each do |donation| %>
-<%= donation.amount %>
-<% end %>
+<div class="container">
 
-<%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn btn-primary" %>
+<!-- basic information -->
+<div>
+  <h1>
+    <%= @fundraiser.title %>
+  </h1>
+  <h2>
+    Target: <%= @fundraiser.target %>
+  </h2>
+  <h2>
+    Amount raised: <%= @fundraiser.total_raised %>
+  </h2>
+  <h2>
+    <%= @fundraiser.end_date %>
+  </h2>
+</div>
+
+
+<!-- direct donations -->
+<div>
+  <div class="form-box">
+  <!-- direct donation form -->
+    <p>Donate to fundraiser?</p>
+    <%= render 'direct_donations/form', fundraiser: @fundraiser, direct_donation: DirectDonation.new %>
+  </div>
+  <!-- Prior direct donations -->
+  <div>
+    <h2>Prior direct donations</h2>
+      <% @fundraiser.direct_donations.each do |donation| %>
+       <p> <%= donation.amount %> <%= donation.message %> </p>
+      <% end %>
+  </div>
+</div>
+
+
+<!-- Events for the fundraiser -->
+  <div>
+  <h2> Events for the fundraiser </h2>
+    <% @fundraiser.events.each do |event| %>
+      <p> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <%= event.total_raised %> to date </p>
+    <% end %>
+    <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn btn-primary" %>
+  </div>
+</div>
