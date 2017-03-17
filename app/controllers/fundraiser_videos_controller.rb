@@ -5,13 +5,14 @@ class FundraiserVideosController < ApplicationController
 
   def new
     @fundraiser_video = FundraiserVideo.new
-    authorize @fundraiser
+    @fundraiser_video.fundraiser = @fundraiser
+    authorize @fundraiser_video
   end
 
   def create
     @fundraiser_video = FundraiserVideo.create(fundraiser_video_params)
-    authorize @fundraiser
     @fundraiser_video.fundraiser = @fundraiser
+    authorize @fundraiser_video
 
     if @fundraiser_video.save
       redirect_to fundraiser_path(@fundraiser)
@@ -21,12 +22,12 @@ class FundraiserVideosController < ApplicationController
   end
 
   def edit
-    authorize @fundraiser
+    authorize @fundraiser_video
   end
 
   def update
-    authroize @fundraiser
-      if @fundraiser_video.save
+    authorize @fundraiser_video
+      if @fundraiser_video.update(fundraiser_video_params)
         redirect_to fundraiser_path(@fundraiser)
       else
         render :new
@@ -34,7 +35,7 @@ class FundraiserVideosController < ApplicationController
   end
 
   def destroy
-    authorize @fundraiser
+    authorize @fundraiser_video
     @fundraiser_video.destroy
     redirect_to fundraiser_path(@fundraiser)
   end
