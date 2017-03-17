@@ -15,6 +15,8 @@ class CharitiesController < ApplicationController
   def create
     @charity = Charity.create(charity_params)
     @charity.user = current_user
+    @charity.amount_raised = @charity.total_raised
+    authorize @charity
 
     if @charity.save
       redirect_to charity_path(@charity)
