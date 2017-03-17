@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   belongs_to :fundraiser
   validates :target, presence: true
   has_many :event_donations
+  has_many :event_videos
 
 
   def total_raised

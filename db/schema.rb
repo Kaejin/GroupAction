@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316140404) do
+ActiveRecord::Schema.define(version: 20170317142224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20170316140404) do
     t.index ["user_id"], name: "index_event_donations_on_user_id", using: :btree
   end
 
+  create_table "event_videos", force: :cascade do |t|
+    t.integer  "event_id"
+    t.string   "link"
+    t.string   "title"
+    t.integer  "likes",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["event_id"], name: "index_event_videos_on_event_id", using: :btree
+  end
+
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
@@ -49,6 +59,16 @@ ActiveRecord::Schema.define(version: 20170316140404) do
     t.float    "target"
     t.index ["fundraiser_id"], name: "index_events_on_fundraiser_id", using: :btree
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
+  end
+
+  create_table "fundraiser_videos", force: :cascade do |t|
+    t.integer  "fundraiser_id"
+    t.string   "link"
+    t.string   "title"
+    t.integer  "likes",         default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["fundraiser_id"], name: "index_fundraiser_videos_on_fundraiser_id", using: :btree
   end
 
   create_table "fundraisers", force: :cascade do |t|
@@ -87,7 +107,9 @@ ActiveRecord::Schema.define(version: 20170316140404) do
   add_foreign_key "direct_donations", "users"
   add_foreign_key "event_donations", "events"
   add_foreign_key "event_donations", "users"
+  add_foreign_key "event_videos", "events"
   add_foreign_key "events", "fundraisers"
   add_foreign_key "events", "users"
+  add_foreign_key "fundraiser_videos", "fundraisers"
   add_foreign_key "fundraisers", "users"
 end
