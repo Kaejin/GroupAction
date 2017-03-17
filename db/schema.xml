@@ -159,4 +159,23 @@
                                                   <part>id</part>
                                                 </key>
                                               </table>
-                                            </sql>
+                                              <table x="547" y="450" name="Charity">
+                                                <row name="id" null="1" autoincrement="1">
+                                                  <datatype>INTEGER</datatype>
+                                                  <default>NULL</default></row>
+                                                  <row name="user_id" null="1" autoincrement="0">
+                                                    <datatype>INTEGER</datatype>
+                                                    <default>NULL</default><relation table="User" row="id" />
+                                                  </row>
+                                                  <row name="name" null="1" autoincrement="0">
+                                                    <datatype>VARCHAR</datatype>
+                                                    <default>NULL</default></row>
+                                                    <row name="total_raised" null="1" autoincrement="0">
+                                                      <datatype>DECIMAL</datatype>
+                                                      <default>NULL</default><comment>total of all fundraisers and events under the charitys user</comment>
+                                                    </row>
+                                                    <key type="PRIMARY" name="">
+                                                      <part>id</part>
+                                                    </key>
+                                                  </table>
+                                                </sql>
