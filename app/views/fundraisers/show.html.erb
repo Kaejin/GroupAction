@@ -46,12 +46,20 @@
 
 
   <!-- youtube -->
-  <div>
-    <h1> Youtube videos!</h1>
-    <iframe id="ytplayer" type="text/html" width="640" height="360"
-      src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
+  <h1> Youtube videos!</h1>
+    <% @fundraiser.fundraiser_videos.each do |video| %>
+      <div>
+        <h2> <%=  video.title  %> <%= link_to "edit", edit_fundraiser_fundraiser_video_path(@fundraiser, video) %> <%= link_to "destroy", fundraiser_fundraiser_video_path(@fundraiser, video), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
+        <iframe id="ytplayer" type="text/html" width="640" height="360"
+      src="https://www.youtube.com/embed/<%=video.video_url%>?autoplay=0&origin=http://example.com"
       frameborder="0"></iframe>
-  </div>
+      </div>
+      <% end %>
+
+<!-- If owner of the site add a video -->
+  <% if @fundraiser.user == current_user %>
+    <%= link_to "Add a new video", new_fundraiser_fundraiser_video_path(@fundraiser), class: "btn btn-primary" %>
+  <% end %>
 
 
 

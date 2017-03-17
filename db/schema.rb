@@ -41,10 +41,9 @@ ActiveRecord::Schema.define(version: 20170317142224) do
     t.integer  "event_id"
     t.string   "link"
     t.string   "title"
-    t.integer  "likes"
-    t.integer  "dislikes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "likes",      default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["event_id"], name: "index_event_videos_on_event_id", using: :btree
   end
 
@@ -66,10 +65,9 @@ ActiveRecord::Schema.define(version: 20170317142224) do
     t.integer  "fundraiser_id"
     t.string   "link"
     t.string   "title"
-    t.integer  "likes"
-    t.integer  "dislikes"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "likes",         default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["fundraiser_id"], name: "index_fundraiser_videos_on_fundraiser_id", using: :btree
   end
 

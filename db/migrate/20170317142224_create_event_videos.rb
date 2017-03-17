@@ -4,8 +4,7 @@ class CreateEventVideos < ActiveRecord::Migration[5.0]
       t.references :event, foreign_key: true
       t.string :link
       t.string :title
-      t.integer :likes
-      t.integer :dislikes
+      t.integer :likes, default: 0
 
       t.timestamps
     end
