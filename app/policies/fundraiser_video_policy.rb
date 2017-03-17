@@ -1,22 +1,22 @@
 class FundraiserVideoPolicy < ApplicationPolicy
 
   def new?
-    record.user == user
+    record.fundraiser.user == user
   end
 
   def create?
-    record.user == user
+    record.fundraiser.user == user
   end
 
   def edit?
-    record.user == user
+    record.fundraiser.user == user
   end
 
   def update?
-    record.user == user
+    record.fundraiser.user == user
   end
 
   def destroy?
-    record.user == user
+    record.fundraiser.user == user
   end
 end

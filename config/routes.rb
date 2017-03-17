@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :events do
       delete "/fundraisers/:fundraiser_id/events/:id", to: "events#destroy", as: "event_destroy"
       resources :event_donations, only: [:new, :create, :show]
+      resources :event_videos, except: [:index, :show]
     end
   end
 
