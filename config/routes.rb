@@ -12,12 +12,14 @@ Rails.application.routes.draw do
   # end
 
   resources :fundraisers, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :fundraiser_updates, except: [:index]
     resources :fundraiser_videos, except: [:index, :show]
     resources :direct_donations, only: [:index, :new, :create, :show, :edit, :update]
     resources :events do
       delete "/fundraisers/:fundraiser_id/events/:id", to: "events#destroy", as: "event_destroy"
       resources :event_donations, only: [:new, :create, :show]
       resources :event_videos, except: [:index, :show]
+      resources :event_updates, except: [:index]
     end
   end
 

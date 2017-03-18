@@ -1,0 +1,22 @@
+<div class="container">
+
+  <!-- Back to fundraiser  -->
+  <%= link_to "Back to event", fundraiser_event_path(@fundraiser, @event) %>
+
+  <!-- edit/delete -->
+  <% if @event_update.event.user == current_user  %>
+    <%= link_to "edit", edit_fundraiser_event_event_update_path(@fundraiser, @event, @event_update) %> <%= link_to "destroy", fundraiser_event_event_update_path(@fundraiser, @event, @event_update), method: 'delete', :data => {:confirm => 'Are you sure?'} %>
+  <% end %>
+
+
+  <h1> <%= @event_update.title %></h1>
+
+  <p> <%= @event_update.message %></p>
+
+  <% if !@event_update.link.nil? %>
+    <iframe id="ytplayer" type="text/html" width="640" height="360"
+      src="https://www.youtube.com/embed/<%=@event_update.video_url%>?autoplay=0&origin=http://example.com"
+      frameborder="0"></iframe>
+  <% end %>
+
+</div>

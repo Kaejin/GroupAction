@@ -1,0 +1,9 @@
+<div class="form-box">
+  <%= simple_form_for [@fundraiser, @fundraiser_update] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <%= f.input :title %>
+    <%= f.input :message %>
+    <%= f.input :link, label: 'Youtube Link' %>
+    <%= f.submit %>
+  <% end %>
+</div>

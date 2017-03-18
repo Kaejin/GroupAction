@@ -3,6 +3,7 @@ class Fundraiser < ApplicationRecord
   has_many :events
   has_many :direct_donations
   has_many :fundraiser_videos
+  has_many :fundraiser_updates
 
   #has_many :event_donations, through: :event
 
