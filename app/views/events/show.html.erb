@@ -52,4 +52,21 @@
   <% end %>
 
 
+  <!-- Updates! -->
+  <h1> Updates</h1>
+    <% @event.event_updates.each do |update| %>
+      <div>
+        <h2> <%= update.title %>  <%= link_to "edit", edit_fundraiser_event_event_update_path(@fundraiser, @event, update) %> <%= link_to "destroy", fundraiser_event_event_update_path(@fundraiser, @event, update), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
+        <p> <%= update.message %></p>
+        <p> <%= link_to "see more of this update", fundraiser_event_event_update_path(@fundraiser, @event, update)  %></p>
+      </div>
+    <% end %>
+
+
+  <!-- If ownder of the event add an update -->
+    <% if @event.user == current_user %>
+    <%= link_to "Add a new update", new_fundraiser_event_event_update_path(@fundraiser, @event), class: "btn btn-primary" %>
+  <% end %>
+
+
 </div>

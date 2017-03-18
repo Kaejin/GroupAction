@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   validates :target, presence: true
   has_many :event_donations
   has_many :event_videos
+  has_many :event_updates
 
 
   def total_raised

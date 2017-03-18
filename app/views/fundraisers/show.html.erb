@@ -54,13 +54,30 @@
       src="https://www.youtube.com/embed/<%=video.video_url%>?autoplay=0&origin=http://example.com"
       frameborder="0"></iframe>
       </div>
-      <% end %>
+    <% end %>
 
-<!-- If owner of the site add a video -->
+<!-- If owner of the fundraiser add a video -->
   <% if @fundraiser.user == current_user %>
     <%= link_to "Add a new video", new_fundraiser_fundraiser_video_path(@fundraiser), class: "btn btn-primary" %>
   <% end %>
 
+
+  <!-- Updates! -->
+  <h1> Updates</h1>
+    <% @fundraiser.fundraiser_updates.each do |update| %>
+      <div>
+        <h2> <%= update.title %>  <%= link_to "edit", edit_fundraiser_fundraiser_update_path(@fundraiser, update) %> <%= link_to "destroy", fundraiser_fundraiser_update_path(@fundraiser, update), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
+        <p> <%= update.message %></p>
+        <p> <%= link_to "see more of this update", fundraiser_fundraiser_update_path(@fundraiser, update)  %></p>
+      </div>
+    <% end %>
+
+
+
+  <!-- If ownder of the fundraiser add an update -->
+    <% if @fundraiser.user == current_user %>
+    <%= link_to "Add a new update", new_fundraiser_fundraiser_update_path(@fundraiser), class: "btn btn-primary" %>
+  <% end %>
 
 
 </div>
