@@ -4,6 +4,10 @@ class EventUpdatePolicy < ApplicationPolicy
     record.event.user == user
   end
 
+  def show?
+    record.event.user == user
+  end
+
   def create?
     record.event.user == user
   end

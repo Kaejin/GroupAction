@@ -10,6 +10,7 @@ class EventUpdatesController < ApplicationController
   end
 
   def show
+    authorize @event_update
   end
 
   def create
@@ -58,6 +59,6 @@ class EventUpdatesController < ApplicationController
   end
 
   def event_update_params
-    params.require(:event_update).permit(:title, :message)
+    params.require(:event_update).permit(:title, :message, :link)
   end
 end

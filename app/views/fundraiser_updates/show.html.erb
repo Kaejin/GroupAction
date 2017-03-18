@@ -1,9 +1,25 @@
 <div class="container">
 
+  <!-- Back to fundraiser  -->
+  <%= link_to "Back to fundraiser", fundraiser_path(@fundraiser) %>
+
+  <!-- edit/delete -->
+  <% if @fundraiser_update.fundraiser.user == current_user  %>
+      <%= link_to "edit", edit_fundraiser_fundraiser_update_path(@fundraiser, @fundraiser_update) %> <%= link_to "destroy", fundraiser_fundraiser_update_path(@fundraiser, @fundraiser_update), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
+  <% end %>
+
+
+
+  <!-- update content -->
   <h1> <%= @fundraiser_update.title %></h1>
 
   <p> <%= @fundraiser_update.message %></p>
 
+  <% if !@fundraiser_update.link.nil? %>
+    <iframe id="ytplayer" type="text/html" width="640" height="360"
+      src="https://www.youtube.com/embed/<%=@fundraiser_update.video_url%>?autoplay=0&origin=http://example.com"
+      frameborder="0"></iframe>
+  <% end %>
 
 
 

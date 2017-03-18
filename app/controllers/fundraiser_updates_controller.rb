@@ -58,6 +58,6 @@ class FundraiserUpdatesController < ApplicationController
 
 
   def fundraiser_update_params
-    params.require(:fundraiser_update).permit(:title, :message)
+    params.require(:fundraiser_update).permit(:title, :message, :link)
   end
 end
