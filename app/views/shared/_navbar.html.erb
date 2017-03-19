@@ -1,101 +1,35 @@
-<div class="GroupAction-navbar" id="hover-nav">
+<div class="ga-navbar">
 
-
-  <!-- left side of navbar -->
-  <div class="left-side-navbar">
-
-    <div class="navbar-GroupAction-sides no-wrap">
-    <div>
-      <% if !user_signed_in? %>
-        <div class="sign-up-btn">
-          <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_registration_path(is_charity: true), class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
-        </div>
-      <% elsif current_user.is_charity? && current_user.verified? %>
-        <div class="sign-up-btn">
-          <%= link_to "Create a fundraiser", new_fundraiser_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
-        </div>
-      <% else %>
-        <div class="sign-up-btn">
-          <p>thing 1</p>
-        </div>
-      <% end %>
-    </div>
-
-    <div>
-      <% if !user_signed_in? %>
-        <div class="sign-up-btn">
-          <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
-        </div>
-        <% else %>
-          <div class="sign-up-btn">
-            <p>thing 2</p>
-          </div>
-        <% end %>
-    </div>
-
-    </div>
-
+  <div class="nav-logo">
+    <%= link_to root_path, class: "small-nav-logo" do %>
+      <%= image_tag "ga-logo.png" %>
+    <% end %>
   </div>
 
-
-
-
-
-
-  <!-- Logo -->
-  <div class="navbar-GroupAction-sides text-center">
-    <div>
-      <%= link_to root_path, class: "navbar-GroupAction-brand hidden-xs" do %>
-        <%= image_tag "logo.png" %>
-      <% end %>
-    </div>
-  </div>
-
-  <!-- end logo -->
-
-
-  <!-- end of left side -->
-
-  <!-- right side of navbar -->
-  <div class="right-side-navbar">
-    <div class="navbar-GroupAction-sides hidden-xs hidden-sm">
-      <!-- <div class="navbar-GroupAction-item navbar-GroupAction-link">
-        <%# if user_signed_in? %>
-          <div class="navbar-GroupAction-item">
-          PLAYER MENU
-            <%#= link_to "player", "#", class: "hvr-grow toggle-player" %>
-          </div>
-        <%# end %>
-      </div> -->
-      <!-- PROFILE -->
-      <div class="navbar-GroupAction-item navbar-GroupAction-link">
-
+  <div class="ga-nav-right">
+    <% if !user_signed_in? %>
+      <div class="sign-up-btn">
+        <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_registration_path(is_charity: true), class: "" %>
       </div>
-      <div class="navbar-GroupAction-item navbar-GroupAction-link">
-        <% if user_signed_in? %>
-        <!-- MESSAGES -->
-
-        <% end %>
+    <% elsif current_user.is_charity? && current_user.verified? %>
+      <div class="sign-up-btn">
+        <%= link_to "Create a fundraiser", new_fundraiser_path, class: "" %>
       </div>
-    </div>
-  </div>
-
-<div>
-
-        <% if !user_signed_in? %>
-      <div class="sign-in-btn">
-        <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
-      </div>
-      <% else %>
-        <div class="sign-in-btn no-wrap">
-        <%= link_to "log out", destroy_user_session_path, method: :delete, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+    <% else %>
+      <div class="sign-up-btn">
+        <p>thing 1</p>
       </div>
     <% end %>
 
-</div>
-
-
-  <!-- Dropdown list appearing on mobile only -->
-
+    <% if !user_signed_in? %>
+      <div class="sign-up-btn">
+        <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "" %>
+      </div>
+    <% else %>
+      <div class="sign-up-btn">
+        <p>thing 2</p>
+        </div>
+    <% end %>
+  </div>
 
 </div>
