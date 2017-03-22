@@ -1,5 +1,18 @@
-.home-banner {
-  height: calc(100vmin - 150px);
+#signup-info {
+  img {
+    width: 100%;
+  }
+  h2 {
+    color: $off-brand;
+  }
+}
+
+.content {
+  margin-top: 40px;
+}
+
+.hover-background-color:hover {
+  background-color: RGBA(128, 0, 32, 0.1);
 }
 
 #sport-form {

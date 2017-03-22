@@ -3,8 +3,8 @@
  * ------------------------------------- */
 // Google fonts
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Oxygen');
-$base-font: "Oxygen", "sans-serif";
 $header-font: "Montserrat", "sans-serif";
+$base-font: "Oxygen", "sans-serif";
 
 
 // Local fonts (uncomment following lines)
@@ -26,10 +26,17 @@ $base-height: 1.4;
  * ------------------------------------- */
 // Scheme
 $brand-color: #800020;
-$off-brand: #3D1400;
-$complementary: #317B00;
-$off-complementary: #005E3D;
-$light-grey: #C2CCCD;
+$complimentary: #F2BB05;
+$off-brand: #9D1436;
+$off-complimentary: #BD2F53;
+$mid-grey: #C4BBAF;
+$light-grey: #E9E6E1;
+$dark-grey: #34353A;
+
+// $off-brand: #3D1400;
+// $complementary: #317B00;
+// $off-complementary: #005E3D;
+// $light-grey: #C2CCCD;
 
 
 $red: #EE5F5B;

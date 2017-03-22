@@ -1,0 +1,28 @@
+#home-navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 70px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 1000;
+  position: fixed;
+  width: 100%;
+}
+
+#home-nav-right {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sign-up-btn {
+  background-color: $off-complimentary;
+  border-radius: 3px;
+  margin-right: 15px;
+  text-align: center;
+  color: white;
+  &:hover {
+    background-color: RGBA(189, 47, 83, 0.5);
+    color: white;
+  }
+}

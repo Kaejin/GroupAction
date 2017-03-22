@@ -1,7 +1,6 @@
 .banner {
   color: white;
   text-align: center;
-  height: 60vh;
   background-size: cover !important;
   display: flex;
   align-items: center;
@@ -20,16 +19,29 @@
   margin-bottom: 20px;
 }
 
-.home-banner {
+#home-banner {
   width: 100vw;
-  height: calc(100vh - 70px);
+  height: 70vh;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  .home-banner-caption {
+
+  #home-banner-caption {
     color: white;
-    font-family: futura;
+    background-color: rgba(25, 25, 25, 0.4);
+    padding: 30px;
+    .btn {
+      font-size: 25px;
+      border-radius: 3px;
+      padding-left: 35px;
+      padding-right: 35px;
+      background-color: transparent;
+      border: 1px solid white;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
     .home-banner-typed, h1 {
       margin: 0;
     }
@@ -41,9 +53,13 @@
     }
     h1 {
       font-family: $base-font;
-      box-shadow: inset 0px -14px $brand-success;
-      letter-spacing: 0.1em;
-      font-size: 6vmin;
+      box-shadow: inset 0px -14px rgba(128, 0, 32, 0.5);
+      letter-spacing: 0.13em;
+      font-size: 5.5vmin;
+    }
+    p {
+      margin-top: 20px;
+      font-size: 3vmin;
     }
   }
 }
