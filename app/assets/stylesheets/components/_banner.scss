@@ -19,14 +19,15 @@
   margin-bottom: 20px;
 }
 
-.home-banner {
+#home-banner {
   width: 100vw;
-  height: calc(50vh - 70px);
+  height: calc(70vh - 70px);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  .home-banner-caption {
+
+  #home-banner-caption {
     color: white;
     .btn {
       font-size: 25px;

@@ -1,80 +1,96 @@
-<div class="home-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.5)), url('<%= image_path 'library/World.jpg' %>'); background-size: cover; background-position: center; background-attachment: fixed;">
-  <div class="home-banner-caption text-center">
-    <h1>SAVE THE WORLD TODAY</h1>
-    <p>Take a look at ongoing fundraisers and make a donation</p>
-      <%= link_to "Go", fundraisers_path, class: "btn btn-primary btn-lg top-margin" %>
-  </div>
-</div>
+<div class="panel-overlay header">
+  <div class="panel-inner">
 
-<div class="black-wrapper">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
+    <div id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.5)), url('<%= image_path 'library/World.jpg' %>'); background-size: cover; background-position: center; background-attachment: fixed;">
+      <div class="text-center" id="home-banner-caption">
+        <h1>SAVE THE WORLD TODAY</h1>
+        <p>Take a look at ongoing fundraisers and make a donation</p>
+          <%= link_to "Go", fundraisers_path, class: "btn btn-primary btn-lg top-margin" %>
+      </div>
+    </div>
+
+    <div class="black-wrapper">
+      <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-sm-4">
-            <div class="flexbox-column icon-info">
-              <div class="off-brand-background">
-                <%= image_tag "white-hand.png" %>
+          <div class="col-sm-8 col-sm-offset-2">
+            <div class="row">
+              <div class="col-xs-12 col-sm-4">
+                <div class="flexbox-column icon-info">
+                  <div class="off-brand-background">
+                    <%= image_tag "white-hand.png" %>
+                  </div>
+                  <p><strong>Our Mission</strong></p>
+                  <p class="text-center">Increase transparency between donators and charities</p>
+                </div>
               </div>
-              <p><strong>Our Mission</strong></p>
-              <p class="text-center">Increase transparency between donators and charities</p>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <div class="flexbox-column icon-info">
-              <div class="off-brand-background">
-                <%= image_tag "white-money.png" %>
+              <div class="col-xs-12 col-sm-4">
+                <div class="flexbox-column icon-info">
+                  <div class="off-brand-background">
+                    <%= image_tag "white-money.png" %>
+                  </div>
+                  <p><strong>Donate Today</strong></p>
+                  <p class="text-center">Donate to any fundraiser right here</p>
+                </div>
               </div>
-              <p><strong>Donate Today</strong></p>
-              <p class="text-center">Donate to any fundraiser right here</p>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <div class="flexbox-column icon-info">
-              <div class="off-brand-background">
-                <%= image_tag "white-donation.png" %>
+              <div class="col-xs-12 col-sm-4">
+                <div class="flexbox-column icon-info">
+                  <div class="off-brand-background">
+                    <%= image_tag "white-donation.png" %>
+                  </div>
+                   <p><strong>Be a Charity</strong></p>
+                   <p class="text-center">Sign up as a charity and help your cause</p>
+                </div>
               </div>
-               <p><strong>Be a Charity</strong></p>
-               <p class="text-center">Sign up as a charity and help your cause</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
-<div id="signup-info">
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
+<div class="panel-overlay content">
+  <div class="panel-inner">
+
+    <div id="signup-info">
+      <div class="container">
         <div class="row">
-          <div class="col-sm-6" style="padding: 0px;">
-            <%= image_tag "library/franklin.jpg", style: "height: 320px; object-fit: cover;"%>
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-sm-6" style="padding: 0px;">
+                <%= image_tag "library/franklin.jpg", style: "height: 320px; object-fit: cover;"%>
+              </div>
+              <div class="col-sm-6" style="padding: 20px">
+                <h2 class="text-center">Sign up as a Charity</h2>
+                <p class="text-center" style="color: black">Join the world's first platform to bring charities and donors closer together. Pie bonbon bonbon powder gummies cotton candy. Muffin soufflé I love. Cookie bear claw I love carrot cake candy canes I love brownie.</p>
+                <div class="text-center">
+                  <%= link_to "Click Here", new_user_registration_path(is_charity: true), class: "text-center btn btn-lg top-margin btn-transparent" %>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-sm-6" style="padding: 20px">
-            <h2 class="text-center" style="color: $off-brand">Sign up as a Charity</h2>
-            <p class="text-center" style="color: black">Join the world's first platform to bring charities and donors closer together. Pie bonbon bonbon powder gummies cotton candy. Muffin soufflé I love. Cookie bear claw I love carrot cake candy canes I love brownie.</p>
-            <%= link_to "Click Here", fundraisers_path, class: "btn btn-primary btn-lg top-margin" %>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-sm-6" style="padding: 20px">
+                <h2 class="text-center">Sign up as a User</h2>
+                <p class="text-center" style="color: black">Do something good today. Sign up to create charity events and donate to causes you care about. Croissant jelly-o icing. Pie halvah toffee gingerbread I love. Croissant cookie powder sugar plum I love cookie.</p>
+                <div class="text-center">
+                  <%= link_to "Click Here", new_user_registration_path(is_charity: false), class: "text-center btn btn-lg top-margin btn-transparent" %>
+                </div>
+              </div>
+              <div class="col-sm-6" style="padding: 0px;">
+                <%= image_tag "library/crowd.jpg", style: "height: 320px; object-fit: cover;" %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="row">
-          <div class="col-sm-6" style="padding: 20px">
-            <h2 class="text-center" style="color: $off-brand">Sign up as a User</h2>
-            <p class="text-center" style="color: black">Do something good today. Sign up to create charity events and donate to causes you care about. Croissant jelly-o icing. Pie halvah toffee gingerbread I love. Croissant cookie powder sugar plum I love cookie.</p>
-          </div>
-          <div class="col-sm-6" style="padding: 0px;">
-            <%= image_tag "library/crowd.jpg", style: "height: 320px; object-fit: cover;" %>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </div>
 </div>
-
 
 

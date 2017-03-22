@@ -1,0 +1,16 @@
+.panel-overlay {
+    position: relative;
+    z-index: 5;
+    }
+.panel-fixed {
+  z-index: 1;
+  }
+.panel-inner {
+  width: 100%;
+  }
+.panel-fixed .panel-inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}

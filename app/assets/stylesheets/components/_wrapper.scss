@@ -61,6 +61,9 @@
 }
 
 .black-wrapper {
+  display: flex;
+  align-items: center;
+  height: 30vh;
   padding-top: 30px;
   padding-bottom: 30px;
   color: white;

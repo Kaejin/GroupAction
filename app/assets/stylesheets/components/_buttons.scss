@@ -1,0 +1,9 @@
+.btn-transparent {
+  border-radius: 3px;
+  border: 2px solid $off-brand;
+  color: RGBA(157, 20, 54, 1.0);
+  &:hover {
+    border: 2px solid RGBA(157, 20, 54, 0.5);
+    color: RGBA(157, 20, 54, 0.5);
+  }
+}
