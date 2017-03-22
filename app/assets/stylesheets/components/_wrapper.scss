@@ -60,9 +60,24 @@
   }
 }
 
+.white-wrapper {
+  margin-top: 30px;
+  color: black;
+}
 
-
-
+.yellow-background {
+  background-color: $complimentary;
+  margin-bottom: 25px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    height: 50px;
+  }
+}
 
 
 

@@ -29,8 +29,8 @@
   .home-banner-caption {
     color: white;
     .btn {
-      font-size: 30px;
-      border-radius: 2px;
+      font-size: 25px;
+      border-radius: 3px;
       padding-left: 35px;
       padding-right: 35px;
       background-color: transparent;
@@ -53,6 +53,10 @@
       box-shadow: inset 0px -14px rgba(128, 0, 32, 0.5);
       letter-spacing: 0.13em;
       font-size: 5.5vmin;
+    }
+    p {
+      margin-top: 20px;
+      font-size: 3vmin;
     }
   }
 }
