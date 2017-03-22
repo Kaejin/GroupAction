@@ -1,0 +1,41 @@
+<div id ="home-navbar">
+
+  <div id="home-nav-right">
+    <div>
+      <% if !user_signed_in? %>
+        <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_registration_path(is_charity: true), class: "sign-up-btn btn text-center" %>
+      <% elsif current_user.is_charity? && current_user.verified? %>
+        <%= link_to "Create a fundraiser", new_fundraiser_path, class: "" %>
+      <% else %>
+        <p>thing 1</p>
+      <% end %>
+    </div>
+
+    <div>
+      <% if !user_signed_in? %>
+        <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "sign-up-btn btn text-center" %>
+      <% else %>
+        <p>thing 2</p>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<% content_for(:after_js) do %>
+  <script>
+    var mywindow = $(window);
+    var mypos = mywindow.scrollTop();
+    mywindow.scroll(function() {
+      if(mywindow.scrollTop() > mypos)
+      {
+          $('#home-navbar').fadeOut();
+      }
+      else
+      {
+          $('#home-navbar').fadeIn();
+      }
+      mypos = mywindow.scrollTop();
+   });
+  </script>
+<% end %>

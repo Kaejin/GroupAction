@@ -9,7 +9,7 @@
   <div class="ga-nav-right">
     <% if !user_signed_in? %>
       <div class="sign-up-btn">
-        <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_registration_path(is_charity: true), class: "" %>
+        <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_registration_path(is_charity: true), class: "sign-up-btn" %>
       </div>
     <% elsif current_user.is_charity? && current_user.verified? %>
       <div class="sign-up-btn">
@@ -23,7 +23,7 @@
 
     <% if !user_signed_in? %>
       <div class="sign-up-btn">
-        <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "" %>
+        <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "sign-up-btn" %>
       </div>
     <% else %>
       <div class="sign-up-btn">

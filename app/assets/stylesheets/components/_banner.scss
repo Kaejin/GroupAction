@@ -21,7 +21,7 @@
 
 #home-banner {
   width: 100vw;
-  height: calc(70vh - 70px);
+  height: 70vh;
   position: relative;
   display: flex;
   align-items: center;
@@ -29,6 +29,8 @@
 
   #home-banner-caption {
     color: white;
+    background-color: rgba(25, 25, 25, 0.4);
+    padding: 30px;
     .btn {
       font-size: 25px;
       border-radius: 3px;

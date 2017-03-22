@@ -9,7 +9,8 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+    <%= render 'shared/home_navbar' if current_page?(root_url) %>
+    <%= render 'shared/navbar' if !current_page?(root_url)%>
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= render 'shared/footer' %>
