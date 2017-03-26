@@ -10,12 +10,12 @@
 
 
   <!-- basic information -->
-  <div>
+  <div class="section-seperator">
     <h2>   <%= @event.title %> -- <%= @event.total_raised %> raised of <%= @event.target %> target </h2>
   </div>
 
   <!-- event donations; only shown if event is active -->
-  <div>
+  <div class="section-seperator">
     <div class="form-box">
       <% if @event.active %>
         <p>Donate to fundraiser through event:</p>
@@ -28,7 +28,7 @@
   </div>
 
   <!-- Prior event donations -->
-  <div>
+  <div class="section-seperator">
     <h2>Prior event donations</h2>
     <% @event.event_donations.each do |donation| %>
       <p> <%= donation.amount %> <%= donation.message %> </p>
@@ -36,6 +36,7 @@
   </div>
 
     <!-- youtube -->
+<div class="section-seperator">
   <h1> Youtube videos!</h1>
     <% @event.event_videos.each do |video| %>
       <div>
@@ -50,9 +51,11 @@
   <% if @event.user == current_user %>
     <%= link_to "Add a new video", new_fundraiser_event_event_video_path(@fundraiser, @event), class: "btn btn-primary" %>
   <% end %>
+</div>
 
 
   <!-- Updates! -->
+<div class="section-seperator">
   <h1> Updates</h1>
     <% @event.event_updates.each do |update| %>
       <div>
@@ -67,6 +70,6 @@
     <% if @event.user == current_user %>
     <%= link_to "Add a new update", new_fundraiser_event_event_update_path(@fundraiser, @event), class: "btn btn-primary" %>
   <% end %>
-
+</div>
 
 </div>

@@ -1,7 +1,7 @@
 <div class="container">
 
 <!-- basic information -->
-<div>
+<div class="section-seperator">
   <h1>
     <%= @fundraiser.title %>
   </h1>
@@ -19,7 +19,7 @@
 
 <!-- direct donations -->
 <div>
-  <div class="form-box">
+  <div class="form-box section-seperator">
   <!-- direct donation form -->
     <p>Donate to fundraiser?</p>
     <%= render 'direct_donations/form', fundraiser: @fundraiser, direct_donation: DirectDonation.new %>
@@ -35,7 +35,7 @@
 
 
 <!-- Events for the fundraiser -->
-  <div>
+  <div class="section-seperator">
   <h2> Events for the fundraiser </h2>
     <% @fundraiser.events.each do |event| %>
       <p> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <%= event.total_raised %> to date </p>
@@ -46,6 +46,7 @@
 
 
   <!-- youtube -->
+<div class="section-seperator">
   <h1> Youtube videos!</h1>
     <% @fundraiser.fundraiser_videos.each do |video| %>
       <div>
@@ -56,13 +57,16 @@
       </div>
     <% end %>
 
+
 <!-- If owner of the fundraiser add a video -->
   <% if @fundraiser.user == current_user %>
     <%= link_to "Add a new video", new_fundraiser_fundraiser_video_path(@fundraiser), class: "btn btn-primary" %>
   <% end %>
+</div>
 
 
   <!-- Updates! -->
+<div class="section-seperator">
   <h1> Updates</h1>
     <% @fundraiser.fundraiser_updates.each do |update| %>
       <div>
@@ -78,6 +82,7 @@
     <% if @fundraiser.user == current_user %>
     <%= link_to "Add a new update", new_fundraiser_fundraiser_update_path(@fundraiser), class: "btn btn-primary" %>
   <% end %>
+</div>
 
 
 </div>
