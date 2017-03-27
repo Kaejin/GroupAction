@@ -5,21 +5,27 @@
       <% if !user_signed_in? %>
         <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_registration_path(is_charity: true), class: "home-sign-up-btn btn text-center" %>
       <% elsif current_user.is_charity? && current_user.verified? %>
-        <%= link_to "Create a fundraiser", new_fundraiser_path, class: "" %>
+        <%= link_to "Create a fundraiser", new_fundraiser_path, class: "sign-up-btn btn text-center"%>
+        <%= link_to "log out", destroy_user_session_path, method: :delete, class: "sign-up-btn btn text-center" %>
       <% else %>
-        <p>thing 1</p>
+        <%= link_to "log out", destroy_user_session_path, method: :delete, class: "sign-up-btn btn text-center" %>
       <% end %>
     </div>
 
     <div>
-          <% if !user_signed_in? %>
-        <div class="sign-in-btn">
-          <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
-        </div>
-        <% else %>
-          <div class="sign-in-btn no-wrap">
-            <%= link_to "log out", destroy_user_session_path, method: :delete, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
-          </div>
+
+      <% if !user_signed_in? %>
+        <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "sign-up-btn btn text-center" %>
+      <% else %>
+
+      <% end %>
+    </div>
+
+    <div>
+      <% if !user_signed_in? %>
+        <%= link_to t(".sign_in", default: "Log in"), new_user_session_path, class: "sign-up-btn btn text-center" %>
+      <% else %>
+
       <% end %>
     </div>
   </div>
