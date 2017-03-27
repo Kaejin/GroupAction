@@ -1,0 +1,17 @@
+<div class="form-box">
+  <% if @event.nil? %>
+    <%= simple_form_for [@fundraiser, @offline_donation] do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+      <%= f.input :amount %>
+      <%= f.input :message %>
+      <%= f.submit %>
+    <% end %>
+  <% else %>
+    <%= simple_form_for [@fundraiser, @event, @offline_donation] do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+      <%= f.input :amount %>
+      <%= f.input :message %>
+      <%= f.submit %>
+    <% end %>
+  <% end %>
+</div>

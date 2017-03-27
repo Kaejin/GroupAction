@@ -1,6 +1,18 @@
 <div id ="home-navbar">
 
+  <!-- notifications tab -->
+  <% if user_signed_in? %>
+    <% if current_user.admin == true && User.where(is_charity: true, verified: false).count > 0 %>
+      <div
+        <p> There are <%= User.where(is_charity: true, verified: false).count %> users to verify </p>
+      </div>
+    <% end %>
+  <% end %>
+
+
+
   <div id="home-nav-right">
+
     <div>
       <% if !user_signed_in? %>
         <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_registration_path(is_charity: true), class: "home-sign-up-btn btn text-center" %>

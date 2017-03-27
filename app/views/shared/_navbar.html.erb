@@ -6,6 +6,15 @@
     <% end %>
   </div>
 
+  <!-- notifications tab -->
+  <% if user_signed_in? %>
+    <% if current_user.admin == true && User.where(is_charity: true, verified: false).count > 0 %>
+      <div>
+        <p> There are <%= User.where(is_charity: true, verified: false).count %> users to verify </p>
+      </div>
+    <% end %>
+  <% end %>
+
   <div class="ga-nav-right">
     <% if !user_signed_in? %>
       <div class="sign-up-btn">
@@ -13,7 +22,7 @@
       </div>
     <% elsif current_user.is_charity? && current_user.verified? %>
       <div class="sign-up-btn">
-        <%= link_to "Create a fundraiser", new_fundraiser_path, class: "" %>
+        <%= link_to "Create a fundraiser", new_fundraiser_path, class: "sign-up-btn btn text-center" %>
       </div>
     <% else %>
       <div class="sign-up-btn">
@@ -26,9 +35,11 @@
         <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "sign-up-btn btn text-center" %>
       </div>
     <% else %>
+
       <div class="sign-in-btn no-wrap">
         <%= link_to "log out", destroy_user_session_path, method: :delete, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
         </div>
+
     <% end %>
 
       <% if !user_signed_in? %>
