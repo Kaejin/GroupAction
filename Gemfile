@@ -21,6 +21,7 @@ gem 'autoprefixer-rails'
 gem "pundit"
 gem 'remotipart', github: 'mshibuya/remotipart'
 gem 'rails_admin', '>= 1.0.0.rc'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'binding_of_caller'

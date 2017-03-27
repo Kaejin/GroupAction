@@ -5,11 +5,13 @@ class Event < ApplicationRecord
   has_many :event_donations
   has_many :event_videos
   has_many :event_updates
+  has_many :offline_donations, as: :imageable
 
 
   def total_raised
     self.amount_raised = 0
     self.event_donations.each { |donation| self.amount_raised += donation.amount }
+    self.offline_donations.each { |donation| self.amount_raised += donation.amount}
     self.amount_raised
   end
 

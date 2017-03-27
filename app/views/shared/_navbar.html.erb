@@ -6,6 +6,15 @@
     <% end %>
   </div>
 
+  <!-- notifications tab -->
+  <% if user_signed_in? %>
+    <% if current_user.admin == true && User.where(is_charity: true, verified: false).count > 0 %>
+      <div>
+        <p> There are <%= User.where(is_charity: true, verified: false).count %> users to verify </p>
+      </div>
+    <% end %>
+  <% end %>
+
   <div class="ga-nav-right">
     <% if !user_signed_in? %>
       <div class="sign-up-btn">
@@ -26,9 +35,9 @@
         <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "ga-link btn text-center" %>
       </div>
     <% else %>
-      <div class="ga-link">
-        <p>thing 2</p>
-        </div>
+      <div class="ga-link no-wrap">
+        <%= link_to "log out", destroy_user_session_path, method: :delete, class: "ga-link" %>
+      </div>
     <% end %>
 
       <% if !user_signed_in? %>

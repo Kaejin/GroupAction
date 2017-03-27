@@ -1,27 +1,32 @@
 <div class="container">
-<div class="row" style="border-bottom: 1px solid #800020; padding-bottom: 30px;">
-  <h1 class="thin-header">
-    <%= @fundraiser.title %>
-  </h1>
-  <div class="col-xs-12 col-md-6" style="padding-top: 30px">
-      <%= image_tag "library/baby.jpg", class: "half-page-image" %>
-  </div>
-  <div class="col-xs-12 col-md-6">
-    <!-- basic information -->
-    <div>
-      <h2>
-        <span class="off-complimentary">£<%= @fundraiser.total_raised.ceil %></span> of <span class="off-complimentary">£<%= @fundraiser.target.ceil %></span> raised so far
-      </h2>
-      <h2>
-      </h2>
-      <h5>Ending <%= @fundraiser.end_date.strftime("%e %B %Y") %></h5>
-      <div id="donor_counter"></div>
-      <div class="text-center">
-       <button type="button" class="big-button btn btn-lg hvr-grow" data-toggle="modal" data-target="#donateModal">Donate</button>
+
+  <div class="row" style="border-bottom: 1px solid #800020; padding-bottom: 30px;">
+    <h1 class="thin-header">
+
+  <!-- basic information -->
+  <!-- <div class="section-seperator"> -->
+    <h1>
+      <%= @fundraiser.title %>
+    </h1>
+    <div class="col-xs-12 col-md-6" style="padding-top: 30px">
+        <%= image_tag "library/baby.jpg", class: "half-page-image" %>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <!-- basic information -->
+      <div>
+        <h2>
+          <span class="off-complimentary">£<%= @fundraiser.total_raised.ceil %></span> of <span class="off-complimentary">£<%= @fundraiser.target.ceil %></span> raised so far
+        </h2>
+        <h2>
+        </h2>
+        <h5>Ending <%= @fundraiser.end_date.strftime("%e %B %Y") %></h5>
+        <div id="donor_counter"></div>
+        <div class="text-center">
+         <button type="button" class="big-button btn btn-lg hvr-grow" data-toggle="modal" data-target="#donateModal">Donate</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalLabel">
   <div class="modal-dialog" role="document">
@@ -41,9 +46,6 @@
   </div>
 </div>
 
-
-
-<div>
   <!-- Prior direct donations -->
   <div>
     <h2 class="brand-color" style="font-weight: lighter">Previous donations</h2>
@@ -56,11 +58,42 @@
        <p> £<%= donation.amount.ceil %> - <%= message %> </p>
       <% end %>
   </div>
-</div>
+
+  <!-- Offline donations -->
+    <div class="section-seperator">
+      <h2>Offline Donations</h2>
+    <!-- total raised (shitty formula I know) -->
+      <% fundraiser_offline_donation = 0 %>
+      <p> Total raised offline: <% @fundraiser.offline_donations.each do |donation| %>
+        <% fundraiser_offline_donation += donation.amount %>
+        <% end %>
+        <%= fundraiser_offline_donation %>
+
+    <!-- offline donation comments -->
+        <p> Prior offline donations</p>
+        <% @fundraiser.offline_donations.each do |donation| %>
+          <p> <%= donation.amount %> <%= donation.message %>
+          <% if @fundraiser.user == current_user %>
+            <%= link_to "edit", edit_fundraiser_offline_donation_path(@fundraiser, donation) %>
+            <%= link_to "delete", fundraiser_offline_donation_path(@fundraiser, donation), data: { confirm: "Are you sure?" }, method: :delete %>
+          <% end %>
+          </p>
+        <% end %>
+      </p>
+
+
+    <!-- if page owner can create/edit offline donations -->
+      <% if @fundraiser.user == current_user %>
+        <%= link_to "Record an offline donation", new_fundraiser_offline_donation_path(@fundraiser), class: "btn btn-primary" %>
+      <% end %>
+
+
+    </div>
+
 
 
 <!-- Events for the fundraiser -->
-  <div>
+  <div class="section-seperator">
   <h2> Events for the fundraiser </h2>
     <% @fundraiser.events.each do |event| %>
       <p> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <%= event.total_raised %> to date </p>
@@ -71,38 +104,43 @@
 
 
   <!-- youtube -->
-  <h1> Youtube videos!</h1>
-    <% @fundraiser.fundraiser_videos.each do |video| %>
-      <div>
-        <h2> <%=  video.title  %> <%= link_to "edit", edit_fundraiser_fundraiser_video_path(@fundraiser, video) %> <%= link_to "destroy", fundraiser_fundraiser_video_path(@fundraiser, video), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
-        <iframe id="ytplayer" type="text/html" width="640" height="360"
-      src="https://www.youtube.com/embed/<%=video.video_url%>?autoplay=0&origin=http://example.com"
-      frameborder="0"></iframe>
-      </div>
-    <% end %>
-
-<!-- If owner of the fundraiser add a video -->
-  <% if @fundraiser.user == current_user %>
-    <%= link_to "Add a new video", new_fundraiser_fundraiser_video_path(@fundraiser), class: "btn btn-primary" %>
-  <% end %>
+  <div class="section-seperator">
+    <h1> Youtube videos!</h1>
+      <% @fundraiser.fundraiser_videos.each do |video| %>
+        <div>
+          <h2> <%=  video.title  %> <%= link_to "edit", edit_fundraiser_fundraiser_video_path(@fundraiser, video) %> <%= link_to "destroy", fundraiser_fundraiser_video_path(@fundraiser, video), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
+          <iframe id="ytplayer" type="text/html" width="640" height="360"
+        src="https://www.youtube.com/embed/<%=video.video_url%>?autoplay=0&origin=http://example.com"
+        frameborder="0"></iframe>
+        </div>
+      <% end %>
 
 
-  <!-- Updates! -->
-  <h1> Updates</h1>
-    <% @fundraiser.fundraiser_updates.each do |update| %>
-      <div>
-        <h2> <%= update.title %>  <%= link_to "edit", edit_fundraiser_fundraiser_update_path(@fundraiser, update) %> <%= link_to "destroy", fundraiser_fundraiser_update_path(@fundraiser, update), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
-        <p> <%= update.message %></p>
-        <p> <%= link_to "see more of this update", fundraiser_fundraiser_update_path(@fundraiser, update)  %></p>
-      </div>
-    <% end %>
-
-
-
-  <!-- If ownder of the fundraiser add an update -->
+  <!-- If owner of the fundraiser add a video -->
     <% if @fundraiser.user == current_user %>
-    <%= link_to "Add a new update", new_fundraiser_fundraiser_update_path(@fundraiser), class: "btn btn-primary" %>
-  <% end %>
+      <%= link_to "Add a new video", new_fundraiser_fundraiser_video_path(@fundraiser), class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+
+    <!-- Updates! -->
+  <div class="section-seperator">
+    <h1> Updates</h1>
+      <% @fundraiser.fundraiser_updates.each do |update| %>
+        <div>
+          <h2> <%= update.title %>  <%= link_to "edit", edit_fundraiser_fundraiser_update_path(@fundraiser, update) %> <%= link_to "destroy", fundraiser_fundraiser_update_path(@fundraiser, update), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
+          <p> <%= update.message %></p>
+          <p> <%= link_to "see more of this update", fundraiser_fundraiser_update_path(@fundraiser, update)  %></p>
+        </div>
+      <% end %>
+
+
+
+    <!-- If ownder of the fundraiser add an update -->
+      <% if @fundraiser.user == current_user %>
+      <%= link_to "Add a new update", new_fundraiser_fundraiser_update_path(@fundraiser), class: "btn btn-primary" %>
+    <% end %>
+  </div>
 
 
 </div>

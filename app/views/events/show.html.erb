@@ -10,12 +10,12 @@
 
 
   <!-- basic information -->
-  <div>
+  <div class="section-seperator">
     <h2>   <%= @event.title %> -- <%= @event.total_raised %> raised of <%= @event.target %> target </h2>
   </div>
 
   <!-- event donations; only shown if event is active -->
-  <div>
+  <div class="section-seperator">
     <div class="form-box">
       <% if @event.active %>
         <p>Donate to fundraiser through event:</p>
@@ -28,14 +28,47 @@
   </div>
 
   <!-- Prior event donations -->
-  <div>
+  <div class="section-seperator">
     <h2>Prior event donations</h2>
     <% @event.event_donations.each do |donation| %>
       <p> <%= donation.amount %> <%= donation.message %> </p>
     <% end %>
   </div>
 
+
+    <!-- Offline donations -->
+    <div class="section-seperator">
+      <h2>Offline Donations</h2>
+    <!-- total raised (shitty formula I know) -->
+      <% event_offline_donation = 0 %>
+      <p> Total raised offline: <% @event.offline_donations.each do |donation| %>
+        <% event_offline_donation += donation.amount %>
+        <% end %>
+        <%= event_offline_donation %>
+
+    <!-- offline donation comments -->
+        <p> Prior offline donations</p>
+        <% @event.offline_donations.each do |donation| %>
+          <p> <%= donation.amount %> <%= donation.message %>
+          <% if @event.user == current_user %>
+            <%= link_to "edit", edit_fundraiser_event_offline_donation_path(@fundraiser, @event, donation) %>
+            <%= link_to "delete", fundraiser_event_offline_donation_path(@fundraiser, @event, donation), data: { confirm: "Are you sure?" }, method: :delete %>
+          <% end %>
+          </p>
+        <% end %>
+      </p>
+
+    <!-- if page owner can create/edit offline donations -->
+      <% if @event.user == current_user %>
+        <%= link_to "Record an offline donation", new_fundraiser_event_offline_donation_path(@fundraiser, @event), class: "btn btn-primary" %>
+      <% end %>
+
+
+    </div>
+
+
     <!-- youtube -->
+<div class="section-seperator">
   <h1> Youtube videos!</h1>
     <% @event.event_videos.each do |video| %>
       <div>
@@ -50,9 +83,11 @@
   <% if @event.user == current_user %>
     <%= link_to "Add a new video", new_fundraiser_event_event_video_path(@fundraiser, @event), class: "btn btn-primary" %>
   <% end %>
+</div>
 
 
   <!-- Updates! -->
+<div class="section-seperator">
   <h1> Updates</h1>
     <% @event.event_updates.each do |update| %>
       <div>
@@ -67,6 +102,6 @@
     <% if @event.user == current_user %>
     <%= link_to "Add a new update", new_fundraiser_event_event_update_path(@fundraiser, @event), class: "btn btn-primary" %>
   <% end %>
-
+</div>
 
 </div>
