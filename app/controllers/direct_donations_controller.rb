@@ -1,6 +1,7 @@
 class DirectDonationsController < ApplicationController
 
   before_action :set_direct_donation, only: [:show, :edit, :update]
+  before_action :authenticate_user!, except: [:index, :show, :new, :create]
 
   def index
     @direct_donations = policy_scope.(DirectDonation).order(:created_at)
@@ -15,7 +16,8 @@ class DirectDonationsController < ApplicationController
 
   def create
     @direct_donation = DirectDonation.new(direct_donation_params)
-    @direct_donation.user = current_user
+    @direct_donation.user = current_user if user_signed_in?
+    @direct_donation.user = User.find(1)
     @direct_donation.fundraiser = Fundraiser.find(params[:fundraiser_id])
     authorize @direct_donation
 
@@ -26,16 +28,6 @@ class DirectDonationsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-    if @direct_donation.update(direct_donation_params)
-      redirect_to direct_donation_path(@direct_donation)
-    else
-      render :new
-    end
-  end
 
   private
 
