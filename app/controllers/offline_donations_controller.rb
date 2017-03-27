@@ -18,7 +18,8 @@ class OfflineDonationsController < ApplicationController
 
     authorize @offline_donation
     if @offline_donation.save
-      redirect_to fundraiser_path(@fundraiser)
+      redirect_to fundraiser_path(@fundraiser) if @offline_donation.imageable_type == "Fundraiser"
+      redirect_to fundraiser_event_path(@fundraiser, @event) if @offline_donation.imageable_type == "Event"
     else
       render :new
     end
@@ -31,7 +32,8 @@ class OfflineDonationsController < ApplicationController
   def update
     authorize @offline_donation
     if @offline_donation.update(offline_donations_params)
-      redirect_to fundraiser_path(@fundraiser)
+      redirect_to fundraiser_path(@fundraiser) if @offline_donation.imageable_type == "Fundraiser"
+      redirect_to fundraiser_event_path(@fundraiser, @event) if @offline_donation.imageable_type == "Event"
     else
       render :new
     end
@@ -40,7 +42,8 @@ class OfflineDonationsController < ApplicationController
   def destroy
     authorize @offline_donation
     @offline_donation.destroy
-    redirect_to fundraiser_path(@fundraiser)
+    redirect_to fundraiser_path(@fundraiser) if @offline_donation.imageable_type == "Fundraiser"
+    redirect_to fundraiser_event_path(@fundraiser, @event) if @offline_donation.imageable_type == "Event"
   end
 
 

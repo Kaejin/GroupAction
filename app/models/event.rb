@@ -11,6 +11,7 @@ class Event < ApplicationRecord
   def total_raised
     self.amount_raised = 0
     self.event_donations.each { |donation| self.amount_raised += donation.amount }
+    self.offline_donations.each { |donation| self.amount_raised += donation.amount}
     self.amount_raised
   end
 

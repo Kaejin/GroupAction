@@ -35,6 +35,38 @@
     <% end %>
   </div>
 
+
+    <!-- Offline donations -->
+    <div class="section-seperator">
+      <h2>Offline Donations</h2>
+    <!-- total raised (shitty formula I know) -->
+      <% event_offline_donation = 0 %>
+      <p> Total raised offline: <% @event.offline_donations.each do |donation| %>
+        <% event_offline_donation += donation.amount %>
+        <% end %>
+        <%= event_offline_donation %>
+
+    <!-- offline donation comments -->
+        <p> Prior offline donations</p>
+        <% @event.offline_donations.each do |donation| %>
+          <p> <%= donation.amount %> <%= donation.message %>
+          <% if @event.user == current_user %>
+            <%= link_to "edit", edit_fundraiser_event_offline_donation_path(@fundraiser, @event, donation) %>
+            <%= link_to "delete", fundraiser_event_offline_donation_path(@fundraiser, @event, donation), data: { confirm: "Are you sure?" }, method: :delete %>
+          <% end %>
+          </p>
+        <% end %>
+      </p>
+
+    <!-- if page owner can create/edit offline donations -->
+      <% if @event.user == current_user %>
+        <%= link_to "Record an offline donation", new_fundraiser_event_offline_donation_path(@fundraiser, @event), class: "btn btn-primary" %>
+      <% end %>
+
+
+    </div>
+
+
     <!-- youtube -->
 <div class="section-seperator">
   <h1> Youtube videos!</h1>

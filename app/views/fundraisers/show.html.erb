@@ -43,7 +43,7 @@
         <% end %>
         <%= fundraiser_offline_donation %>
 
-    <!-- Comments -->
+    <!-- offline donation comments -->
         <p> Prior offline donations</p>
         <% @fundraiser.offline_donations.each do |donation| %>
           <p> <%= donation.amount %> <%= donation.message %>
