@@ -28,3 +28,17 @@ span.goalAmount {
   display: none;
   text-indent: -9999px;
 }
+
+#donor_counter {
+  padding-top: 15px;
+}
+
+.big-button {
+  background-color: $off-complimentary;
+  margin-top: 40px;
+  color: white;
+  font-size: 4vmin;
+  &:hover {
+    color: white;
+  }
+}
