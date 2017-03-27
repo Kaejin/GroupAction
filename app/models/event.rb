@@ -5,6 +5,7 @@ class Event < ApplicationRecord
   has_many :event_donations
   has_many :event_videos
   has_many :event_updates
+  has_many :offline_donations, as: :imageable
 
 
   def total_raised

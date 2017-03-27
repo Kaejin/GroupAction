@@ -33,6 +33,37 @@
   </div>
 </div>
 
+  <!-- Offline donations -->
+    <div class="section-seperator">
+      <h2>Offline Donations</h2>
+    <!-- total raised (shitty formula I know) -->
+      <% fundraiser_offline_donation = 0 %>
+      <p> Total raised offline: <% @fundraiser.offline_donations.each do |donation| %>
+        <% fundraiser_offline_donation += donation.amount %>
+        <% end %>
+        <%= fundraiser_offline_donation %>
+
+    <!-- Comments -->
+        <p> Prior offline donations</p>
+        <% @fundraiser.offline_donations.each do |donation| %>
+          <p> <%= donation.amount %> <%= donation.message %>
+          <% if @fundraiser.user == current_user %>
+            <%= link_to "edit", edit_fundraiser_offline_donation_path(@fundraiser, donation) %>
+          <% end %>
+          </p>
+        <% end %>
+      </p>
+
+
+    <!-- if page owner can create/edit offline donations -->
+      <% if @fundraiser.user == current_user %>
+        <%= link_to "Record an offline donation", new_fundraiser_offline_donation_path(@fundraiser), class: "btn btn-primary" %>
+      <% end %>
+
+
+    </div>
+
+
 
 <!-- Events for the fundraiser -->
   <div class="section-seperator">

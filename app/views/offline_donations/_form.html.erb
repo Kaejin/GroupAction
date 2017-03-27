@@ -1,0 +1,8 @@
+<div class="form-box">
+  <%= simple_form_for [@fundraiser, @offline_donation] do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <%= f.input :amount %>
+    <%= f.input :message %>
+    <%= f.submit %>
+  <% end %>
+</div>
