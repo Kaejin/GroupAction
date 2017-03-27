@@ -1,0 +1,8 @@
+.submit_donation {
+  background-color: $brand-color;
+  color: white;
+  &:hover {
+    color: white;
+    opacity: 1.5;
+  }
+}
