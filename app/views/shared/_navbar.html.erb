@@ -6,6 +6,15 @@
     <% end %>
   </div>
 
+  <!-- notifications tab -->
+  <% if user_signed_in? %>
+    <% if current_user.admin == true && User.where(is_charity: true, verified: false).count > 0 %>
+      <div>
+        <p> There are <%= User.where(is_charity: true, verified: false).count %> users to verify </p>
+      </div>
+    <% end %>
+  <% end %>
+
   <div class="ga-nav-right">
     <% if !user_signed_in? %>
       <div class="sign-up-btn">
