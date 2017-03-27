@@ -1,9 +1,9 @@
 <div class="container">
-<div class="row">
+<div class="row" style="border-bottom: 1px solid #800020; padding-bottom: 30px;">
   <h1 class="thin-header">
     <%= @fundraiser.title %>
   </h1>
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-md-6" style="padding-top: 30px">
       <%= image_tag "library/baby.jpg", class: "half-page-image" %>
   </div>
   <div class="col-xs-12 col-md-6">
@@ -30,12 +30,12 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="donateModalLabel">Donate</h4>
       </div>
+      <!-- direct donations -->
       <div class="modal-body">
         <%= render 'direct_donations/form', fundraiser: @fundraiser, direct_donation: DirectDonation.new %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -43,18 +43,17 @@
 
 
 
-<!-- direct donations -->
 <div>
-  <div class="form-box">
-  <!-- direct donation form -->
-    <p>Donate to fundraiser?</p>
-
-  </div>
   <!-- Prior direct donations -->
   <div>
-    <h2>Prior direct donations</h2>
+    <h2 class="brand-color" style="font-weight: lighter">Previous donations</h2>
       <% @fundraiser.direct_donations.each do |donation| %>
-       <p> <%= donation.amount %> <%= donation.message %> </p>
+      <% if (donation.message == "")
+          message = "no message"
+        else
+          message = "'#{donation.message}'"
+       end %>
+       <p> £<%= donation.amount.ceil %> - <%= message %> </p>
       <% end %>
   </div>
 </div>

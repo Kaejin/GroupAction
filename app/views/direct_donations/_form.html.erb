@@ -1,7 +1,11 @@
-<%= simple_form_for [fundraiser, direct_donation] do |f| %>
-  <%= f.input :amount %>
-  <%= f.input :message %>
-  <%= f.submit %>
-<% end %>
-
-
+<div class="donation_form">
+  <%= simple_form_for [fundraiser, direct_donation] do |f| %>
+    <div class="form_amount_input">
+      <%= f.input :amount %>
+    </div>
+    <%= f.input :message %>
+    <div class="text-center">
+      <%= f.submit class: "btn-primary btn btn-lg" %>
+    </div>
+  <% end %>
+</div>

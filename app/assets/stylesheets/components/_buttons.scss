@@ -38,7 +38,7 @@ span.goalAmount {
   margin-top: 40px;
   color: white;
   font-size: 4vmin;
-  &:hover {
+  &:hover, &:focus {
     color: white;
   }
 }
