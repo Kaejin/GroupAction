@@ -26,8 +26,8 @@
         <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "sign-up-btn" %>
       </div>
     <% else %>
-      <div class="sign-up-btn">
-        <p>thing 2</p>
+      <div class="sign-in-btn no-wrap">
+        <%= link_to "log out", destroy_user_session_path, method: :delete, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
         </div>
     <% end %>
   </div>

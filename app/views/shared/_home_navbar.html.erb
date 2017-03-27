@@ -12,10 +12,14 @@
     </div>
 
     <div>
-      <% if !user_signed_in? %>
-        <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "home-sign-up-btn btn text-center" %>
-      <% else %>
-        <p>thing 2</p>
+          <% if !user_signed_in? %>
+        <div class="sign-in-btn">
+          <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+        </div>
+        <% else %>
+          <div class="sign-in-btn no-wrap">
+            <%= link_to "log out", destroy_user_session_path, method: :delete, class: "navbar-GroupAction-item-item navbar-GroupAction-item-link hvr-grow" %>
+          </div>
       <% end %>
     </div>
   </div>
