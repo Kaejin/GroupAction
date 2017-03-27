@@ -1,20 +1,27 @@
 <div class="container">
-
-<!-- basic information -->
-<div>
-  <h1>
+<div class="row">
+  <h1 class="text-center">
     <%= @fundraiser.title %>
   </h1>
-  <h2>
-    Target: <%= @fundraiser.target %>
-  </h2>
-  <h2>
-    Amount raised: <%= @fundraiser.total_raised %>
-  </h2>
-  <h2>
-    <%= @fundraiser.end_date %>
-  </h2>
+  <div class="col-xs-12 col-md-6">
+      <%= image_tag "library/baby.jpg", class: "half-page-image" %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <!-- basic information -->
+    <div>
+      <h2>
+        Target: <%= @fundraiser.target %>
+      </h2>
+      <h2>
+        Amount raised: <%= @fundraiser.total_raised %>
+      </h2>
+      <h2>
+        <%= @fundraiser.end_date %>
+      </h2>
+    </div>
+  </div>
 </div>
+
 
 
 <!-- direct donations -->
