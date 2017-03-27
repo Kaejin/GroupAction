@@ -37,6 +37,13 @@ class OfflineDonationsController < ApplicationController
     end
   end
 
+  def destroy
+    authorize @offline_donation
+    @offline_donation.destroy
+    redirect_to fundraiser_path(@fundraiser)
+  end
+
+
   private
 
   def set_offline_donation

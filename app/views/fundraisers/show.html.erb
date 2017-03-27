@@ -49,6 +49,7 @@
           <p> <%= donation.amount %> <%= donation.message %>
           <% if @fundraiser.user == current_user %>
             <%= link_to "edit", edit_fundraiser_offline_donation_path(@fundraiser, donation) %>
+            <%= link_to "delete", fundraiser_offline_donation_path(@fundraiser, donation), data: { confirm: "Are you sure?" }, method: :delete %>
           <% end %>
           </p>
         <% end %>
