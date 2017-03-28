@@ -1,14 +1,25 @@
+ <%= cl_image_tag @charity.photos.first.path, width: 1450 , height: 300, crop: :fill %>
+
+
+
+
+
+<!-- basic charity information -->
 <h2><%= @charity.name %>
   <% if @charity.user == current_user %>
     <%= link_to "edit", edit_charity_path %>
   <% end %>
 </h2>
 
+<!-- Money raised -->
 <h3> <%= @charity.total_raised %> raised from <%= @charity.user.fundraisers.count %> fundraiser(s) </h3>
 
+<!-- Bio/Mission -->
 <p> Bio: <%=  @charity.bio  %> </p>
 <p> Mission: <%= @charity.mission %>  </p>
 
+
+<!-- Photos -->
 <% @charity.photos.each do |photo| %>
-  <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+  <%= cl_image_tag photo.path, width: 300, crop: :fill %>
 <% end %>
