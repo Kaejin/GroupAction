@@ -59,6 +59,6 @@ class EventUpdatesController < ApplicationController
   end
 
   def event_update_params
-    params.require(:event_update).permit(:title, :message, :link)
+    params.require(:event_update).permit(:title, :message, :link, photos: [])
   end
 end

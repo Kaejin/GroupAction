@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   has_many :event_videos
   has_many :event_updates
   has_many :offline_donations, as: :imageable
+  has_attachments :photos, maximum: 5
 
 
   def total_raised
