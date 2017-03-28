@@ -10,7 +10,7 @@
   <% if user_signed_in? %>
     <% if current_user.admin && User.where(is_charity: true, verified: false).count > 0 %>
       <div>
-        <p> There are <%= User.where(is_charity: true, verified: false).count %> users to verify </p>
+        <p> There are <%= User.where(is_charity: true, verified: false).count %> <%= link_to "users to verify", rails_admin_path%> </p>
       </div>
     <% end %>
   <% end %>
