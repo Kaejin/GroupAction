@@ -43,7 +43,7 @@ class CharitiesController < ApplicationController
   private
 
   def charity_params
-    params.require(:charity).permit(:name, :mission, :bio, :charity_number)
+    params.require(:charity).permit(:name, :mission, :bio, :charity_number, photos: [])
   end
 
   def set_charity

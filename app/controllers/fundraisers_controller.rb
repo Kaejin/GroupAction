@@ -49,6 +49,6 @@ class FundraisersController < ApplicationController
   end
 
   def fundraiser_params
-    params.require(:fundraiser).permit(:user_id, :title, :target, :end_date)
+    params.require(:fundraiser).permit(:user_id, :title, :target, :end_date, photos: [])
   end
 end
