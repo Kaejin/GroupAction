@@ -10,11 +10,11 @@ class FundraiserPolicy < ApplicationPolicy
   end
 
   def new?
-    user.verified
+    user.is_charity && user.verified && user.charity.present?
   end
 
   def create?
-    user.verified
+    user.is_charity && user.verified && user.charity.present?
   end
 
   def show?
