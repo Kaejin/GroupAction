@@ -1,5 +1,7 @@
-<h2><%= @charity.name %></h2>
-<% if @charity.user == current_user %>
-  <%= link_to "edit", edit_charity_path %>
-  <%= link_to "Delete", charity_destroy_path(@charity), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-<% end %>
+<h2><%= @charity.name %>
+  <% if @charity.user == current_user %>
+    <%= link_to "edit", edit_charity_path %>
+  <% end %>
+</h2>
+
+<h3> <%= @charity.total_raised %> raised from <%= @charity.user.fundraisers.count %> fundraiser(s) </h3>

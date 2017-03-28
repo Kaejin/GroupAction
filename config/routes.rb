@@ -27,8 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :charities
-  delete "/charities/:id", to: "charities#destroy", as: "charity_destroy"
+  resources :charities, except: [:destroy]
 
 
 end
