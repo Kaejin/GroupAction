@@ -8,12 +8,26 @@
 
   <!-- notifications tab -->
   <% if user_signed_in? %>
-    <% if current_user.admin == true && User.where(is_charity: true, verified: false).count > 0 %>
+    <% if current_user.admin && User.where(is_charity: true, verified: false).count > 0 %>
       <div>
-        <p> There are <%= User.where(is_charity: true, verified: false).count %> users to verify </p>
+        <p> There are <%= User.where(is_charity: true, verified: false).count %> <%= link_to "users to verify", rails_admin_path%> </p>
       </div>
     <% end %>
   <% end %>
+
+  <!-- Create your charity/manage your charity -->
+  <% if user_signed_in? %>
+    <% if current_user.is_charity && current_user.verified && current_user.charity.nil? %>
+      <div>
+        <p> <%= link_to "Create Your Charity", new_charity_path %> </p>
+      </div>
+    <% elsif current_user.is_charity && current_user.verified  %>
+      <div>
+        <p> <%= link_to "Manage Your Charity", charity_path(current_user.charity) %></p>
+      </div>
+    <% end %>
+  <% end %>
+
 
   <div class="ga-nav-right">
     <% if !user_signed_in? %>

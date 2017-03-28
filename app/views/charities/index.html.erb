@@ -1,7 +1,7 @@
 <ul>
   <% @charities.each do |charity| %>
     <li>
-      <%= link_to charity.name, charity_path(charity) %> <%= charity.user.email %>
+      <%= link_to charity.name, charity_path(charity) %>
     </li>
   <% end %>
 </ul>
