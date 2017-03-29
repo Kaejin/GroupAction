@@ -45,7 +45,7 @@
 }
 
 .bold-off-brand {
-  color: #BD2F53;
+  color: $off-complimentary;
   font-size: 1.2em;
 }
 
@@ -74,14 +74,10 @@
 }
 
 .underlined {
-  border-bottom: 1px soild $brand-color;
+  border-bottom: 1px solid $brand-color;
 }
 
 .float-right {
   position: absolute;
   right: 10px;
-  a:hover {
-    text-decoration: none;
-    opacity: 0.5;
-  }
 }
