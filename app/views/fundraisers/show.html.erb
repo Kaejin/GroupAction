@@ -142,7 +142,7 @@
 
     <!-- Updates! -->
   <div class="section-seperator">
-    <h1> Updates</h1>
+    <h1>News</h1>
       <% @fundraiser.fundraiser_updates.each do |update| %>
         <div>
           <h2> <%= update.title %>  <%= link_to "edit", edit_fundraiser_fundraiser_update_path(@fundraiser, update) %> <%= link_to "destroy", fundraiser_fundraiser_update_path(@fundraiser, update), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>

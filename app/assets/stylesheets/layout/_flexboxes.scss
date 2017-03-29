@@ -11,11 +11,15 @@
 }
 
 .white-box {
-  background-color: white;
+  background-color: #fbfbfb;
   display: flex;
-  box-shadow: 7px 7px 5px -4px rgba(199,199,199,1);
+  box-shadow: 7px 7px 5px -4px rgba(199, 199, 199, 0.34);
   padding: 15px;
-  margin: 15px;
+  margin: 10px;
   // align-items: center;
-  justify-content: space-between;
+  img {
+    object-fit: cover;
+    height: 100px;
+    border-radius: 50%;
+  }
 }
