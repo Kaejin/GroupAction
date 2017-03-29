@@ -12,13 +12,9 @@
     <!-- Create your charity/manage your charity -->
   <% if user_signed_in? %>
     <% if current_user.is_charity && current_user.verified && current_user.charity.nil? %>
-      <div>
-        <p> <%= link_to "Create Your Charity", new_charity_path %> </p>
-      </div>
+        <%= link_to "Create Your Charity", new_charity_path, class: "home-sign-up-btn btn text-center" %>
     <% elsif current_user.is_charity && current_user.verified  %>
-      <div>
-        <p> <%= link_to "Manage Your Charity", charity_path(current_user.charity) %></p>
-      </div>
+      <%= link_to "Manage Your Charity", charity_path(current_user.charity), class: "home-sign-up-btn btn text-center" %>
     <% end %>
   <% end %>
 
@@ -30,17 +26,17 @@
       <% if !user_signed_in? %>
         <%= link_to t(".sign_in", default: "Sign up as a Charity"), new_user_registration_path(is_charity: true), class: "home-sign-up-btn btn text-center" %>
       <% elsif current_user.is_charity? && current_user.verified? && current_user.charity.present?%>
-        <%= link_to "Create a fundraiser", new_fundraiser_path, class: "sign-up-btn btn text-center"%>
-        <%= link_to "log out", destroy_user_session_path, method: :delete, class: "sign-up-btn btn text-center" %>
+        <%= link_to "Create a fundraiser", new_fundraiser_path, class: "home-sign-up-btn btn text-center"%>
+        <%= link_to "log out", destroy_user_session_path, method: :delete, class: "home-sign-up-btn btn text-center" %>
       <% else %>
-        <%= link_to "log out", destroy_user_session_path, method: :delete, class: "sign-up-btn btn text-center" %>
+        <%= link_to "log out", destroy_user_session_path, method: :delete, class: "home-sign-up-btn btn text-center" %>
       <% end %>
     </div>
 
     <div>
 
       <% if !user_signed_in? %>
-        <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "sign-up-btn btn text-center" %>
+        <%= link_to t(".sign_in", default: "Sign up as a User"), new_user_registration_path(is_charity: false), class: "home-sign-up-btn btn text-center" %>
       <% else %>
 
       <% end %>
@@ -48,7 +44,7 @@
 
     <div>
       <% if !user_signed_in? %>
-        <%= link_to t(".sign_in", default: "Log in"), new_user_session_path, class: "sign-up-btn btn text-center" %>
+        <%= link_to t(".sign_in", default: "Log in"), new_user_session_path, class: "home-sign-up-btn btn text-center" %>
       <% else %>
 
       <% end %>
