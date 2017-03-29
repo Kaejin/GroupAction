@@ -30,64 +30,81 @@
     </div>
   </div>
 
-<div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="donateModalLabel">Donate</h4>
-      </div>
-      <!-- direct donations -->
-      <div class="modal-body">
-        <%= render 'direct_donations/form', fundraiser: @fundraiser, direct_donation: DirectDonation.new %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="donateModalLabel">Donate</h4>
+        </div>
+        <!-- direct donations -->
+        <div class="modal-body">
+          <%= render 'direct_donations/form', fundraiser: @fundraiser, direct_donation: DirectDonation.new %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-  <!-- Prior direct donations -->
-  <div>
-    <h2 class="brand-color" style="font-weight: lighter">Previous donations</h2>
-      <% @fundraiser.direct_donations.each do |donation| %>
-      <% if (donation.message == "")
-          message = "no message"
-        else
-          message = "'#{donation.message}'"
-       end %>
-       <p> £<%= donation.amount.ceil %> - <%= message %> </p>
-      <% end %>
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <!-- OFFLINE DONATIONS -->
+      <div class="some-padding">
+        <h2 class="brand-color" style="font-weight: lighter" >Offline Donations <i class="fa fa-question-circle-o" style="font-size: 25px" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Donations given outside Group Action"></i></h2>
+        <!-- if page owner can create/edit offline donations -->
+        <% if @fundraiser.user == current_user %>
+          <%= link_to "Record an offline donation", new_fundraiser_offline_donation_path(@fundraiser), class: "btn btn-primary", style: "margin-bottom: 15px" %>
+        <% end %>
+      <!-- total raised (shitty formula I know) -->
+        <% fundraiser_offline_donation = 0 %>
+        <p style="font-size: 20px"> Total raised offline: <% @fundraiser.offline_donations.each do |donation| %>
+          <% fundraiser_offline_donation += donation.amount %>
+          <% end %>
+          <span style="color: #BD2F53">£<%= fundraiser_offline_donation.ceil %></span>
+        </p>
+      <!-- offline donation comments -->
+          <h3 style="font-weight: lighter; color: #800020">Previous offline donations</h3>
+          <% @fundraiser.offline_donations.each do |donation| %>
+            <p class="underlined"> <span class="bold-off-brand">£<%= donation.amount.ceil %></span> | <%= donation.message %>
+            <% if @fundraiser.user == current_user %>
+              <span class="float-right">
+                <%= link_to "edit", edit_fundraiser_offline_donation_path(@fundraiser, donation) %> |
+                <%= link_to "delete", fundraiser_offline_donation_path(@fundraiser, donation), data: { confirm: "Are you sure?" }, method: :delete %>
+              </span>
+            <% end %>
+            </p>
+          <% end %>
+      </div>
+    </div>
+
+    <div class="col-cs-12 col-md-6">
+      <!-- PREVIOUS DIRECT DONATIONS -->
+      <div>
+        <h2 class="brand-color" style="font-weight: lighter">Previous donations</h2>
+          <% @fundraiser.direct_donations.each do |donation| %>
+          <% if (donation.message == "")
+              message = "no message"
+            else
+              message = donation.message
+           end %>
+           <p><span class="bold-off-brand">£<%= donation.amount.ceil %></span> | <%= message %> </p>
+          <% end %>
+      </div>
+    </div>
+
   </div>
 
+
+
+
+
   <!-- Offline donations -->
-    <div class="section-seperator">
-      <h2>Offline Donations</h2>
-    <!-- total raised (shitty formula I know) -->
-      <% fundraiser_offline_donation = 0 %>
-      <p> Total raised offline: <% @fundraiser.offline_donations.each do |donation| %>
-        <% fundraiser_offline_donation += donation.amount %>
-        <% end %>
-        <%= fundraiser_offline_donation %>
 
-    <!-- offline donation comments -->
-        <p> Prior offline donations</p>
-        <% @fundraiser.offline_donations.each do |donation| %>
-          <p> <%= donation.amount %> <%= donation.message %>
-          <% if @fundraiser.user == current_user %>
-            <%= link_to "edit", edit_fundraiser_offline_donation_path(@fundraiser, donation) %>
-            <%= link_to "delete", fundraiser_offline_donation_path(@fundraiser, donation), data: { confirm: "Are you sure?" }, method: :delete %>
-          <% end %>
-          </p>
-        <% end %>
-      </p>
+  <div class="row">
 
-
-    <!-- if page owner can create/edit offline donations -->
-      <% if @fundraiser.user == current_user %>
-        <%= link_to "Record an offline donation", new_fundraiser_offline_donation_path(@fundraiser), class: "btn btn-primary" %>
-      <% end %>
+  </div>
 
 
     </div>
@@ -95,13 +112,13 @@
 
 
 <!-- Events for the fundraiser -->
-  <div class="section-seperator">
+
   <h2> Events for the fundraiser </h2>
     <% @fundraiser.events.each do |event| %>
       <p> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <%= event.total_raised %> to date </p>
     <% end %>
     <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn btn-primary" %>
-  </div>
+
 
 
 
@@ -156,6 +173,9 @@
         textBefore: '£',
         textAfter: ' raised'
       });
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
     });
   </script>
 <% end %>
