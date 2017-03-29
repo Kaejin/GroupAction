@@ -2,58 +2,70 @@
   <div class="text-center" >
     <h1> <%= @charity.name  %> is making a difference today</h1>
 
-    <!-- edit -->
-  <% if @charity.user == current_user %>
-    <h3> <%= link_to "edit", edit_charity_path %> </h3>
-  <% end %>
+    <!-- Money raised -->
+    <h3> £<%= @charity.total_raised.ceil %> raised from <%= @charity.user.fundraisers.count %> fundraiser(s) </h3>
 
+    <!-- edit -->
+    <% if @charity.user == current_user %>
+      <h3> <%= link_to "edit", edit_charity_path %> </h3>
+    <% end %>
+
+  </div>
+</div>
+
+
+<div class="container">
+
+
+  <!-- Bio/Mission -->
+  <p> Bio: <%=  @charity.bio  %> </p>
+  <p> Mission: <%= @charity.mission %>  </p>
+
+
+  <!-- photos v2 -->
+  <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls"">
+      <div class="slides"></div>
+      <h3 class="title"></h3>
+      <a class="prev">‹</a>
+      <a class="next">›</a>
+      <a class="close">×</a>
+      <a class="play-pause"></a>
+      <ol class="indicator"></ol>
+  </div>
+
+  <div id="links">
+  <h2> Photos</h2>
+    <% @charity.photos.each do |photo| %>
+      <%= link_to cl_image_path photo.path do %>
+         <%= cl_image_tag photo.path, width: 300, crop: :fill, class: "gallery-image"%>
+      <% end %>
+    <% end %>
+  </div>
+
+  <!-- list of charity fundraisers -->
+  <h2>Fundraisers</h2>
+  <div class="row">
+    <% @charity.user.fundraisers.each do |fundraiser| %>
+      <div class="col-xs-4">
+      <p> <%= fundraiser.title  %> </p>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path 'library/crowd.jpg' %>');">
+          <%= link_to "", fundraiser_path(fundraiser), class: "card-link" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
 
+  <!-- script for the images -->
+  <script>
+  document.getElementById('links').onclick = function (event) {
+      event = event || window.event;
+      var target = event.target || event.srcElement,
+          link = target.src ? target.parentNode : target,
+          options = {index: link, event: event},
+          links = this.getElementsByTagName('a');
+      blueimp.Gallery(links, options);
+  };
+  </script>
+
 </div>
-
-
-
-<!-- Money raised -->
-<h3> <%= @charity.total_raised %> raised from <%= @charity.user.fundraisers.count %> fundraiser(s) </h3>
-
-<!-- Bio/Mission -->
-<p> Bio: <%=  @charity.bio  %> </p>
-<p> Mission: <%= @charity.mission %>  </p>
-
-<!-- list of charity fundraisers -->
-<% @charity.user.fundraisers.each do |fundraiser| %>
-  <%= link_to fundraiser.title, fundraiser_path(fundraiser) %>
-<% end %>
-
-
-<!-- photos v2 -->
-<div id="blueimp-gallery" class="blueimp-gallery">
-    <div class="slides"></div>
-    <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
-</div>
-
-<div id="links">
-  <% @charity.photos.each do |photo| %>
-    <%= link_to cl_image_path photo.path do %>
-       <%= cl_image_tag photo.path, width: 300, crop: :fill%>
-    <% end %>
-  <% end %>
-</div>
-
-
-<script>
-document.getElementById('links').onclick = function (event) {
-    event = event || window.event;
-    var target = event.target || event.srcElement,
-        link = target.src ? target.parentNode : target,
-        options = {index: link, event: event},
-        links = this.getElementsByTagName('a');
-    blueimp.Gallery(links, options);
-};
-</script>
