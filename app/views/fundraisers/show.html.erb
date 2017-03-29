@@ -99,16 +99,16 @@
 
   </div>
 
-
 <!-- Events for the fundraiser -->
-
-  <h2> Events for the fundraiser </h2>
-    <% @fundraiser.events.each do |event| %>
-      <p class="opacity-link"> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <%= event.total_raised %> to date </p>
-    <% end %>
-    <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn btn-primary" %>
-
-
+  <div class="row">
+    <div class="col-xs-12">
+      <h2> Events for the fundraiser </h2>
+      <% @fundraiser.events.each do |event| %>
+        <p class="opacity-link"> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <%= event.total_raised %> to date </p>
+      <% end %>
+      <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn btn-primary" %>
+    </div>
+  </div>
 
 
   <!-- youtube -->

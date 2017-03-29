@@ -45,7 +45,7 @@
 }
 
 .bold-off-brand {
-  color: #BD2F53;
+  color: $off-complimentary;
   font-size: 1.2em;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .underlined {
-  border-bottom: 1px soild $brand-color;
+  border-bottom: 1px solid $brand-color;
 }
 
 .float-right {

@@ -35,10 +35,17 @@ span.goalAmount {
 
 .big-button {
   background-color: $off-complimentary;
-  margin-top: 40px;
+  // margin-top: 40px;
   color: white;
   font-size: 4vmin;
   &:hover, &:focus {
     color: white;
+  }
+}
+
+.opacity-link {
+  a:hover {
+    text-decoration: none;
+    opacity: 0.5;
   }
 }
