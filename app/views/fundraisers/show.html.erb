@@ -52,7 +52,7 @@
   </div>
 
   <!-- OFFLINE DONATIONS -->
-  <div class="row">
+  <div class="row underlined" style="padding-bottom: 20px">
     <div class="col-xs-12 col-md-6">
       <div class="some-padding">
         <h2 class="brand-color" style="font-weight: lighter" >Offline Donations <i class="fa fa-question-circle-o" style="font-size: 25px" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Donations given outside Group Action"></i></h2>
@@ -70,7 +70,7 @@
       <!-- offline donation comments -->
           <h3 style="font-weight: lighter; color: #800020">Previous offline donations</h3>
           <% @fundraiser.offline_donations.each do |donation| %>
-            <p class="underlined"> <span class="bold-off-brand">£<%= donation.amount.ceil %></span> | <%= donation.message %>
+            <p> <span class="bold-off-brand">£<%= donation.amount.ceil %></span> | <%= donation.message %>
             <% if @fundraiser.user == current_user %>
               <span class="float-right opacity-link">
                 <%= link_to "edit", edit_fundraiser_offline_donation_path(@fundraiser, donation) %> |
