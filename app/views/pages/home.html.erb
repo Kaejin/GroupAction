@@ -1,5 +1,7 @@
+<!-- optional parallax panels -->
 <div class="panel-overlay header">
   <div class="panel-inner">
+  <!-- end of parallax panels -->
 
     <!-- large photo banner with text -->
     <div id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.5)), url('<%= image_path 'library/World.jpg' %>'); background-size: cover; background-position: center; background-attachment: fixed;">
@@ -58,14 +60,19 @@
   </div>
 </div>
 
+<!-- hiding sign up information if user is signed in -->
 <% unless user_signed_in? %>
+  <!-- optional parallax panels -->
   <div class="panel-overlay content">
     <div class="panel-inner">
+    <!-- end of optional parallax panels -->
 
       <div id="signup-info">
         <div class="container">
           <div class="row">
             <div class="col-xs-12 hover-background-color">
+
+            <!-- Charity information -->
               <div class="row">
                 <div class="col-sm-6" style="padding: 0px;">
                   <%= image_tag "library/franklin.jpg", style: "height: 320px; object-fit: cover;"%>
@@ -80,6 +87,8 @@
               </div>
             </div>
           </div>
+
+          <!-- user information -->
           <div class="row">
             <div class="col-xs-12 hover-background-color">
               <div class="row">
