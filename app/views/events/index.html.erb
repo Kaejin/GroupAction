@@ -1,3 +1,22 @@
 <% @events.each do |event| %>
   <%= event.title %>
+
+    <% if user_signed_in? %>
+      <p>
+        <% if current_user.friend_uids.include?(event.user.uid) %>
+        Your friend <%= event.user.first_name %> is hosting this event
+        <% end %>
+      </p>
+
+      <!-- Donations made by friends to the event -->
+      <% event.event_donations.each do |donation| %>
+        <% if current_user.friend_uids.include?(donation.user.uid) %>
+          <p>
+            Your friend <%= donation.user.first_name %> donated to this event
+          </p>
+        <% end %>
+      <% end %>
+
+    <% end %>
+
 <% end %>

@@ -16,6 +16,12 @@
     <h1>
       <%= @event.title %>
     </h1>
+
+    <% if user_signed_in? && current_user.friend_uids.include?(@event.user.uid) %>
+      <h2>
+        <%= "hosted by your friend #{@event.user.first_name}" %>
+      </h2>
+    <% end %>
      <div class="col-xs-12 col-md-6" style="padding-top: 30px">
         <%= image_tag "library/baby.jpg", class: "half-page-image" %>
     </div>
@@ -62,7 +68,7 @@
   <div class="section-seperator">
     <h2>Prior event donations</h2>
     <% @event.event_donations.each do |donation| %>
-      <p> <%= donation.amount %> <%= donation.message %> </p>
+      <p> <%= donation.amount %> <%= donation.message %> from <%= user_signed_in? && current_user.friend_uids.include?(donation.user.uid) ? "your friend #{donation.user.first_name}" : donation.user.email %> </p>
     <% end %>
   </div>
 

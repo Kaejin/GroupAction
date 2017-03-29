@@ -5,4 +5,5 @@
 //= require jquery-fileupload/basic
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
+//=require js/blueimp-gallery.min
 //= require_tree .

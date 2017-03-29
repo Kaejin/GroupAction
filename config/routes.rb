@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   end
 
   resources :charities, except: [:destroy]
+  get "about_us", to: 'pages#about_us'
+  get "help", to: 'pages#help'
+  get "contact_us", to: 'pages#contact_us'
 
 
 end
