@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount Attachinary::Engine => "/attachinary"
+
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
@@ -27,8 +29,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :charities
-  delete "/charities/:id", to: "charities#destroy", as: "charity_destroy"
+  resources :charities, except: [:destroy]
 
 
 end

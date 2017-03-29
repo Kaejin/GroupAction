@@ -10,22 +10,53 @@
 
 
   <!-- basic information -->
-  <div class="section-seperator">
-    <h2>   <%= @event.title %> -- <%= @event.total_raised %> raised of <%= @event.target %> target </h2>
-  </div>
+  <div class="row" style="border-bottom: 1px solid #800020; padding-bottom: 30px;">
+    <h1 class="thin-header">
 
-  <!-- event donations; only shown if event is active -->
-  <div class="section-seperator">
-    <div class="form-box">
-      <% if @event.active %>
-        <p>Donate to fundraiser through event:</p>
-        <%= render 'event_donations/form', fundraiser: @fundraiser, event: @event, event_donation: EventDonation.new %>
+    <h1>
+      <%= @event.title %>
+    </h1>
+     <div class="col-xs-12 col-md-6" style="padding-top: 30px">
+        <%= image_tag "library/baby.jpg", class: "half-page-image" %>
     </div>
 
-    <% else %>
-      <h3>Donations closed sorry</h3>
-    <% end %>
+  <div class="col-xs-12 col-md-6">
+      <!-- basic information -->
+      <div>
+        <h2>
+          <span class="off-complimentary">£<%= @event.total_raised.ceil %></span> of <span class="off-complimentary">£<%= @event.target.ceil %></span> raised so far
+        </h2>
+        <h2>
+        </h2>
+        <% unless @event.start_date.nil? %>
+        <h5>Starting <%= @event.start_date.strftime("%e %B %Y") %></h5>
+        <% end %>
+        <div id="donor_counter"></div>
+        <div class="text-center">
+         <button type="button" class="big-button btn btn-lg hvr-grow" data-toggle="modal" data-target="#donateModal">Donate</button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="donateModalLabel">Donate</h4>
+      </div>
+      <!-- direct donations -->
+      <div class="modal-body">
+        <%= render 'event_donations/form', fundraiser: @fundraiser, event: @event, event_donation: EventDonation.new %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   <!-- Prior event donations -->
   <div class="section-seperator">
@@ -105,3 +136,18 @@
 </div>
 
 </div>
+
+
+<%= content_for(:after_js) do %>
+  <script>
+    $(document).ready(function(){
+      $('#donor_counter').goalProgress({
+        goalAmount: <%= @event.target %>,
+        currentAmount: <%= @event.total_raised %>,
+        textBefore: '£',
+        textAfter: ' raised'
+      });
+    });
+  </script>
+<% end %>
+

@@ -10,15 +10,15 @@ class CharityPolicy < ApplicationPolicy
   end
 
   def new?
-    user.is_charity
+    user.is_charity? && user.verified? && user.charity.nil?
   end
 
   def create?
-    user.is_charity
+    user.is_charity && user.verified? && user.charity == record
   end
 
   def show?
-    record.user.verified
+    true
   end
 
   def edit?
@@ -29,7 +29,5 @@ class CharityPolicy < ApplicationPolicy
     user == record.user
   end
 
-  def destroy?
-    user == record.user
-  end
+
 end

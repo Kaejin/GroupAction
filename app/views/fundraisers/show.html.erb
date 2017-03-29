@@ -19,7 +19,9 @@
         </h2>
         <h2>
         </h2>
+        <% unless @fundraiser.end_date.nil? %>
         <h5>Ending <%= @fundraiser.end_date.strftime("%e %B %Y") %></h5>
+        <% end %>
         <div id="donor_counter"></div>
         <div class="text-center">
          <button type="button" class="big-button btn btn-lg hvr-grow" data-toggle="modal" data-target="#donateModal">Donate</button>

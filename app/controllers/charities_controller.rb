@@ -39,15 +39,11 @@ class CharitiesController < ApplicationController
     end
   end
 
-  def destroy
-    @charity.destroy
-    redirect_to charities_path
-  end
 
   private
 
   def charity_params
-    params.require(:charity).permit(:name)
+    params.require(:charity).permit(:name, :mission, :bio, :charity_number, photos: [])
   end
 
   def set_charity

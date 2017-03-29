@@ -1,4 +1,12 @@
+<div class="donation_form">
 <%= simple_form_for @charity do |f| %>
   <%= f.input :name %>
-  <%= f.submit %>
+  <%= f.input :mission %>
+  <%= f.input :bio %>
+  <%= f.input :charity_number %>
+  <%= f.input :photos, as: :attachinary %>
+  <div class="text-center">
+  <%= f.submit class: "btn-primary btn btn-lg" %>
+  </div>
 <% end %>
+</div>

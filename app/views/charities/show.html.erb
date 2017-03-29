@@ -1,5 +1,30 @@
-<h2><%= @charity.name %></h2>
-<% if @charity.user == current_user %>
-  <%= link_to "edit", edit_charity_path %>
-  <%= link_to "Delete", charity_destroy_path(@charity), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+<div id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.5)), url('<%= image_path 'library/World.jpg' %>'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <div class="text-center" >
+    <h1> <%= @charity.name  %></h1>
+    <p>Take a look at <%= @charity.name %>'s' fundraisers and make a donation</p>
+      <%= link_to "Go", fundraisers_path, class: "btn btn-primary btn-lg top-margin" %>
+  </div>
+</div>
+
+
+
+
+
+<!-- basic charity information -->
+  <% if @charity.user == current_user %>
+    <%= link_to "edit", edit_charity_path %>
+  <% end %>
+</h2>
+
+<!-- Money raised -->
+<h3> <%= @charity.total_raised %> raised from <%= @charity.user.fundraisers.count %> fundraiser(s) </h3>
+
+<!-- Bio/Mission -->
+<p> Bio: <%=  @charity.bio  %> </p>
+<p> Mission: <%= @charity.mission %>  </p>
+
+
+<!-- Photos -->
+<% @charity.photos.each do |photo| %>
+  <%= cl_image_tag photo.path, width: 300, crop: :fill %>
 <% end %>

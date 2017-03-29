@@ -1,7 +1,36 @@
-<ul>
+<div class="container">
+
   <% @charities.each do |charity| %>
-    <li>
-      <%= link_to charity.name, charity_path(charity) %> <%= charity.user.email %>
-    </li>
+    <div class="row thin-header">
+
+    <!-- card -->
+    <div class="col-xs-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= image_path 'library/crowd.jpg' %>');">
+        <%= link_to "", charity_path(charity), class: "card-link" %>
+      </div>
+    </div>
+
+    <!-- Body of Text -->
+    <div class="col-xs-6">
+      <h2> <%= charity.name %> (name of charity) </h2>
+      <h3> <%= charity.mission.truncate_words(8) %> (mission of charity) </h3>
+      <h4> <%= charity.bio.truncate_words(5) %> (bio of charity) </h4>
+    </div>
+
+    <div class="col-xs-2">
+    <h4> Fundraisers being ran for this charity!</h4>
+      <% charity.user.fundraisers.each do |fundraiser| %>
+        <%= link_to fundraiser.title, fundraiser_path(fundraiser) %>
+      <% end %>
+    </div>
+
+
+
+
+
+
+    </div>
   <% end %>
-</ul>
+
+</div>
+
