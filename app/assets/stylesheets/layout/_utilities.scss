@@ -10,6 +10,10 @@
   padding-bottom: 5em;
 }
 
+.some-padding {
+  padding-right: 3em;
+}
+
 // Backgrounds
 .bg-black {
   background: #4a4a4a;
@@ -40,6 +44,11 @@
   color: $off-complimentary;
 }
 
+.bold-off-brand {
+  color: #BD2F53;
+  font-size: 1.2em;
+}
+
 .hvr-grow {
   display: inline-block;
   vertical-align: middle;
@@ -62,4 +71,17 @@
 
 .section-seperator {
   border: 1px solid black;
+}
+
+.underlined {
+  border-bottom: 1px soild $brand-color;
+}
+
+.float-right {
+  position: absolute;
+  right: 10px;
+  a:hover {
+    text-decoration: none;
+    opacity: 0.5;
+  }
 }
