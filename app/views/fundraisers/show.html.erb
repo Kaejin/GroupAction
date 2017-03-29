@@ -3,8 +3,8 @@
   <div class="row" style="border-bottom: 1px solid #800020; padding-bottom: 30px;">
     <h1 class="thin-header">
 
-  <!-- basic information -->
-  <!-- <div class="section-seperator"> -->
+    <!-- basic information -->
+    <!-- <div class="section-seperator"> -->
     <h1>
       <%= @fundraiser.title %>
     </h1>
@@ -103,12 +103,15 @@
 
 <!-- Events for the fundraiser -->
   <div class="row">
-    <div class="col-xs-12">
-      <h2> Events for the fundraiser <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn medium-button hvr-grow" %> </h2>
-      <% @fundraiser.events.each do |event| %>
-        <p class="opacity-link"> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <span class="bold-off-brand">£<%= event.total_raised.ceil %></span> to date </p>
-      <% end %>
-    </div>
+    <h2> Events for the fundraiser <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn medium-button hvr-grow" %> </h2>
+    <% @fundraiser.events.each do |event| %>
+      <div class="col-xs-12 col-sm-6">
+        <div class="white-box">
+          <%= cl_image_tag event.photos.first.path, class: "thumbnail-img" %>
+          <p class="opacity-link"> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <span class="bold-off-brand">£<%= event.total_raised.ceil %></span> to date </p>
+        </div>
+      </div>
+    <% end %>
   </div>
 
 
