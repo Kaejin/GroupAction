@@ -26,6 +26,8 @@
         <% end %>
         <div id="donor_counter"></div>
         <div class="text-center">
+        <br>
+        <br>
          <button type="button" class="big-button btn btn-lg hvr-grow" data-toggle="modal" data-target="#donateModal">Donate</button>
         </div>
       </div>
@@ -102,11 +104,10 @@
 <!-- Events for the fundraiser -->
   <div class="row">
     <div class="col-xs-12">
-      <h2> Events for the fundraiser </h2>
+      <h2> Events for the fundraiser <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn medium-button hvr-grow" %> </h2>
       <% @fundraiser.events.each do |event| %>
-        <p class="opacity-link"> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <%= event.total_raised %> to date </p>
+        <p class="opacity-link"> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <span class="bold-off-brand">£<%= event.total_raised.ceil %></span> to date </p>
       <% end %>
-      <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn btn-primary" %>
     </div>
   </div>
 
