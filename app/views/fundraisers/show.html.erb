@@ -57,7 +57,7 @@
         else
           message = "'#{donation.message}'"
        end %>
-       <p> £<%= donation.amount.ceil %> - <%= message %> </p>
+       <p> £<%= donation.amount.ceil %> - <%= "#{message} from #{user_signed_in? && current_user.friend_uids.include?(donation.user.uid) ? "Your friend #{donation.user.first_name}" : donation.user.email}" %> </p>
       <% end %>
   </div>
 
