@@ -9,8 +9,7 @@ class EventDonationsController < ApplicationController
 
   def create
     @event_donation = EventDonation.create(event_donation_params)
-    @event_donation.user = current_user if user_signed_in?
-    @event_donation.user = User.find(1)
+    @event_donation.user = user_signed_in? ? current_user : User.first
     @event_donation.event = Event.find(params[:event_id])
     authorize @event_donation
 
