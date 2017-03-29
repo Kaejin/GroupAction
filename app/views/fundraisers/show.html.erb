@@ -8,9 +8,11 @@
     <h1>
       <%= @fundraiser.title %>
     </h1>
+
     <div class="col-xs-12 col-md-6" style="padding-top: 30px">
         <%= image_tag "library/baby.jpg", class: "half-page-image" %>
     </div>
+
     <div class="col-xs-12 col-md-6">
       <!-- basic information -->
       <div>
@@ -28,6 +30,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalLabel">
@@ -48,9 +51,9 @@
     </div>
   </div>
 
+  <!-- OFFLINE DONATIONS -->
   <div class="row">
     <div class="col-xs-12 col-md-6">
-      <!-- OFFLINE DONATIONS -->
       <div class="some-padding">
         <h2 class="brand-color" style="font-weight: lighter" >Offline Donations <i class="fa fa-question-circle-o" style="font-size: 25px" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Donations given outside Group Action"></i></h2>
         <!-- if page owner can create/edit offline donations -->
@@ -69,7 +72,7 @@
           <% @fundraiser.offline_donations.each do |donation| %>
             <p class="underlined"> <span class="bold-off-brand">£<%= donation.amount.ceil %></span> | <%= donation.message %>
             <% if @fundraiser.user == current_user %>
-              <span class="float-right">
+              <span class="float-right opacity-link">
                 <%= link_to "edit", edit_fundraiser_offline_donation_path(@fundraiser, donation) %> |
                 <%= link_to "delete", fundraiser_offline_donation_path(@fundraiser, donation), data: { confirm: "Are you sure?" }, method: :delete %>
               </span>
@@ -79,9 +82,9 @@
       </div>
     </div>
 
-    <div class="col-xs-12 col-md-6">
-      <!-- PREVIOUS DIRECT DONATIONS -->
-      <div class="some">
+    <!-- PREVIOUS DIRECT DONATIONS -->
+    <div class="col-cs-12 col-md-6">
+      <div>
         <h2 class="brand-color" style="font-weight: lighter">Previous donations</h2>
           <% @fundraiser.direct_donations.each do |donation| %>
           <% if (donation.message == "")
@@ -89,37 +92,23 @@
             else
               message = donation.message
            end %>
-           <p><span class="bold-off-brand">£<%= donation.amount.ceil %></span> | <%= message %> </p>
+           <p><span class="bold-off-brand">£<%= donation.amount.ceil %></span> <span class="off-complimentary" style="font-weight: bolder"> | <%= donation.created_at.strftime('%e %B') %> | </span> <%= message %> </p>
           <% end %>
       </div>
     </div>
 
   </div>
 
-
-
-
-
-  <!-- Offline donations -->
-
-  <div class="row">
-
-  </div>
-
-
-    </div>
-
-
-
 <!-- Events for the fundraiser -->
-
-  <h2> Events for the fundraiser </h2>
-    <% @fundraiser.events.each do |event| %>
-      <p> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <%= event.total_raised %> to date </p>
-    <% end %>
-    <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn btn-primary" %>
-
-
+  <div class="row">
+    <div class="col-xs-12">
+      <h2> Events for the fundraiser </h2>
+      <% @fundraiser.events.each do |event| %>
+        <p class="opacity-link"> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <%= event.total_raised %> to date </p>
+      <% end %>
+      <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn btn-primary" %>
+    </div>
+  </div>
 
 
   <!-- youtube -->
@@ -127,7 +116,7 @@
     <h1> Youtube videos!</h1>
       <% @fundraiser.fundraiser_videos.each do |video| %>
         <div>
-          <h2> <%=  video.title  %> <%= link_to "edit", edit_fundraiser_fundraiser_video_path(@fundraiser, video) %> <%= link_to "destroy", fundraiser_fundraiser_video_path(@fundraiser, video), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
+          <h2 class="opacity-link"> <%=  video.title  %> <%= link_to "edit", edit_fundraiser_fundraiser_video_path(@fundraiser, video) %> <%= link_to "destroy", fundraiser_fundraiser_video_path(@fundraiser, video), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
           <iframe id="ytplayer" type="text/html" width="640" height="360"
         src="https://www.youtube.com/embed/<%=video.video_url%>?autoplay=0&origin=http://example.com"
         frameborder="0"></iframe>
