@@ -21,14 +21,41 @@
 <p> Bio: <%=  @charity.bio  %> </p>
 <p> Mission: <%= @charity.mission %>  </p>
 
-
-<!-- Photos -->
-<% @charity.photos.each do |photo| %>
-  <%= cl_image_tag photo.path, width: 300, crop: :fill %>
-<% end %>
-
 <!-- list of charity fundraisers -->
 <% @charity.user.fundraisers.each do |fundraiser| %>
   <%= link_to fundraiser.title, fundraiser_path(fundraiser) %>
 <% end %>
 
+
+<!-- photos v2 -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+<div id="links">
+  <% @charity.photos.each do |photo| %>
+    <%= link_to cl_image_path photo.path do %>
+       <%= cl_image_tag photo.path, width: 300, crop: :fill%>
+    <% end %>
+  <% end %>
+</div>
+
+
+<script src="js/blueimp-gallery.min.js"> </script>
+
+<script>
+document.getElementById('links').onclick = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event},
+        links = this.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+};
+</script>
