@@ -46,62 +46,71 @@
   </div>
 
   <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="donateModalLabel">Donate</h4>
-      </div>
-      <!-- direct donations -->
-      <div class="modal-body">
-        <%= render 'event_donations/form', fundraiser: @fundraiser, event: @event, event_donation: EventDonation.new %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="donateModalLabel">Donate</h4>
+        </div>
+        <!-- direct donations -->
+        <div class="modal-body">
+          <%= render 'event_donations/form', fundraiser: @fundraiser, event: @event, event_donation: EventDonation.new %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <!-- Offline donations -->
+      <div class="some-padding">
+        <h2 class="brand-color" style="font-weight: lighter" >Offline Donations <i class="fa fa-question-circle-o" style="font-size: 25px" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Donations given outside Group Action"></i></h2>
+        <!-- if page owner can create/edit offline donations -->
+      <% if @event.user == current_user %>
+        <%= link_to "Record an offline donation", new_fundraiser_event_offline_donation_path(@fundraiser, @event), class: "btn btn-primary", style: "margin-bottom: 15px" %>
+      <% end %>
 
-  <!-- Prior event donations -->
-  <div class="section-seperator">
-    <h2>Prior event donations</h2>
-    <% @event.event_donations.each do |donation| %>
-      <p> <%= donation.amount %> <%= donation.message %> from <%= user_signed_in? && current_user.friend_uids.include?(donation.user.uid) ? "your friend #{donation.user.first_name}" : donation.user.email %> </p>
-    <% end %>
-  </div>
-
-
-    <!-- Offline donations -->
-    <div class="section-seperator">
-      <h2>Offline Donations</h2>
     <!-- total raised (shitty formula I know) -->
       <% event_offline_donation = 0 %>
-      <p> Total raised offline: <% @event.offline_donations.each do |donation| %>
+      <p style="font-size: 20px"> Total raised offline: <% @event.offline_donations.each do |donation| %>
         <% event_offline_donation += donation.amount %>
         <% end %>
-        <%= event_offline_donation %>
-
+        <span style="color: #BD2F53">£<%= event_offline_donation.ceil %> </span>
+      </p>
     <!-- offline donation comments -->
-        <p> Prior offline donations</p>
+        <h3 style="font-weight: lighter; color: #800020">Previous offline donations</h3>
         <% @event.offline_donations.each do |donation| %>
-          <p> <%= donation.amount %> <%= donation.message %>
+          <p class="underlined"> <span class="bold-off-brand">£<%= donation.amount.ceil %> </span> | <%= donation.message %>
           <% if @event.user == current_user %>
+          <span class="float-right">
             <%= link_to "edit", edit_fundraiser_event_offline_donation_path(@fundraiser, @event, donation) %>
             <%= link_to "delete", fundraiser_event_offline_donation_path(@fundraiser, @event, donation), data: { confirm: "Are you sure?" }, method: :delete %>
+            </span>
           <% end %>
           </p>
         <% end %>
-      </p>
-
-    <!-- if page owner can create/edit offline donations -->
-      <% if @event.user == current_user %>
-        <%= link_to "Record an offline donation", new_fundraiser_event_offline_donation_path(@fundraiser, @event), class: "btn btn-primary" %>
-      <% end %>
-
-
+      </div>
     </div>
+
+    <div class="col-xs-12 col-md-6">
+      <!-- Prior event donations -->
+      <h2>Prior event donations</h2>
+        <% @event.event_donations.each do |donation| %>
+          <% if (donation.message == "")
+              message = "no message"
+            else
+              message = donation.message
+           end %>
+          <p>
+             <span class="bold-off-brand">£<%= donation.amount.ceil %> </span> | <%= message %>
+             <span class="float-right"> <%= user_signed_in? && current_user.friend_uids.include?(donation.user.uid) ? "your friend #{donation.user.first_name}" : donation.user.email %> </span>
+          </p>
+      <% end %>
+    </div>
+  </div>
 
 
     <!-- youtube -->
