@@ -1,8 +1,6 @@
-<div id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.5)), url('<%= image_path 'library/World.jpg' %>'); background-size: cover; background-position: center; background-attachment: fixed;">
+<div id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.5)), url('<%= cl_image_path @charity.photos.first.path %>'); background-size: cover; background-position: center; background-attachment: fixed;">
   <div class="text-center" >
-    <h1> <%= @charity.name  %></h1>
-    <p>Take a look at <%= @charity.name %>'s' fundraisers and make a donation</p>
-      <%= link_to "Go", fundraisers_path, class: "btn btn-primary btn-lg top-margin" %>
+    <h1> <%= @charity.name  %> is making a difference today</h1>
   </div>
 </div>
 
@@ -28,3 +26,9 @@
 <% @charity.photos.each do |photo| %>
   <%= cl_image_tag photo.path, width: 300, crop: :fill %>
 <% end %>
+
+<!-- list of charity fundraisers -->
+<% @charity.user.fundraisers.each do |fundraiser| %>
+  <%= link_to fundraiser.title, fundraiser_path(fundraiser) %>
+<% end %>
+
