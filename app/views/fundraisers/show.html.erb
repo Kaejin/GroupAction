@@ -107,8 +107,13 @@
     <% @fundraiser.events.each do |event| %>
       <div class="col-xs-12 col-sm-6">
         <div class="white-box">
-          <%= cl_image_tag event.photos.first.path, class: "thumbnail-img" %>
-          <p class="opacity-link"> <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %> has raised <span class="bold-off-brand">£<%= event.total_raised.ceil %></span> to date </p>
+          <div>
+            <%= cl_image_tag event.photos.first.path, class: "thumbnail-img " %>
+          </div>
+          <div style="display: flex; flex-direction: column; justify-content: space-between; padding-left: 20px" class="opacity-link">
+            <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %>
+            <p>Total raised: <span class="bold-off-brand">£<%= event.total_raised.ceil %></span> </p>
+          </div>
         </div>
       </div>
     <% end %>

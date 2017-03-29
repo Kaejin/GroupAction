@@ -12,8 +12,10 @@
 
 .white-box {
   background-color: white;
-  display: relative;
+  display: flex;
   box-shadow: 7px 7px 5px -4px rgba(199,199,199,1);
   padding: 15px;
   margin: 15px;
+  // align-items: center;
+  justify-content: space-between;
 }
