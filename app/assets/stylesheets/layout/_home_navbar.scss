@@ -1,6 +1,6 @@
 #home-navbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   height: 70px;
   padding-left: 20px;
@@ -8,6 +8,11 @@
   z-index: 1000;
   position: fixed;
   width: 100%;
+}
+
+#home-nav-right {
+  display: flex;
+  justify-content: space-between;
 }
 
 #home-nav-right {
