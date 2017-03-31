@@ -102,33 +102,49 @@
   </div>
 
   <!-- youtube videos -->
-  <div class="row">
+  <div class="row underlined" style="padding-bottom: 20px">
     <div class="col-xs-12">
-      <h1>Videos and pictures</h1>
-        <% @fundraiser.fundraiser_videos.each do |video| %>
-          <div>
-            <h2 class="opacity-link"> <%=  video.title  %> <%= link_to "edit", edit_fundraiser_fundraiser_video_path(@fundraiser, video) %> <%= link_to "destroy", fundraiser_fundraiser_video_path(@fundraiser, video), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
-            <iframe id="ytplayer" type="text/html" width="640" height="360"
-          src="https://www.youtube.com/embed/<%=video.video_url%>?autoplay=0&origin=http://example.com"
-          frameborder="0"></iframe>
-          </div>
-        <% end %>
-
+      <h1 class="brand-color" style="font-weight: lighter">Videos and pictures</h1>
       <!-- If owner of the fundraiser add a video -->
       <% if @fundraiser.user == current_user %>
         <%= link_to "Add a new video", new_fundraiser_fundraiser_video_path(@fundraiser), class: "btn btn-primary" %>
       <% end %>
+      <div class="row">
+        <% @fundraiser.fundraiser_videos.each do |video| %>
+          <div class="col-sm-6">
+            <h3 class="opacity-link"> <%=  video.title  %> <%= link_to edit_fundraiser_fundraiser_video_path(@fundraiser, video) do %>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to fundraiser_fundraiser_video_path(@fundraiser, video), method: 'delete', :data => {:confirm => 'Are you sure?'} do %>
+               <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <% end %> </h3>
+            <div class="video-wrapper">
+              <iframe id="ytplayer" type="text/html" width="560" height="349"
+          src="https://www.youtube.com/embed/<%=video.video_url%>?autoplay=0&origin=http://example.com"
+          frameborder="0"></iframe>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
     </div>
   </div>
 
     <!-- Updates! -->
-  <div class="row">
+  <div class="row underlined" style="padding-bottom: 20px">
     <div class="col-xs-12">
-      <h1>News</h1>
+      <h1 class="brand-color" style="font-weight: lighter">News</h1>
       <% @fundraiser.fundraiser_updates.each do |update| %>
         <div>
-          <h2> <%= update.title %>  <%= link_to "edit", edit_fundraiser_fundraiser_update_path(@fundraiser, update) %> <%= link_to "destroy", fundraiser_fundraiser_update_path(@fundraiser, update), method: 'delete', :data => {:confirm => 'Are you sure?'} %> </h2>
-          <p> <%= update.message %></p>
+          <h2>
+          <%= update.title %>  <%= link_to edit_fundraiser_fundraiser_update_path(@fundraiser, update) do %>
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to fundraiser_fundraiser_update_path(@fundraiser, update), method: 'delete', :data => {:confirm => 'Are you sure?'} do %>
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          <% end %>
+          </h2>
+          <p> <%= update.message.truncate_words(140) %></p>
           <p> <%= link_to "see more of this update", fundraiser_fundraiser_update_path(@fundraiser, update)  %></p>
         </div>
       <% end %>
