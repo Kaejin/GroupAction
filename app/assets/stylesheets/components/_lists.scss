@@ -1,5 +1,5 @@
 .index-page {
-// position: relative;
+  position: relative;
   h2 {
     font-size: 4.5vmin;
   }
@@ -9,4 +9,11 @@
   p {
     font-size: 3vmin;
   }
+}
+
+.left-text {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100%;
 }

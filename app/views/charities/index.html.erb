@@ -1,19 +1,19 @@
 <div class="container">
 
   <% @charities.each do |charity| %>
-    <div class="row thin-header">
+    <div class="row">
       <div class="col-xs-12">
         <div class="flexbox-space-btwn index-page">
           <div class="small-img">
-           <%= image_tag 'library/crowd.jpg' %>
+           <%= cl_image_tag charity.photos.first.path %>
           </div>
-          <div>
-            <h2> <%= charity.name %> (name of charity) </h2>
-            <h3> <%= charity.mission.truncate_words(8) %> (mission of charity) </h3>
-            <p> <%= charity.bio.truncate_words(5) %> (bio of charity) </p>
+          <div class="left-text" style="width: 30vw;">
+            <h2 class="brand-color"  style="font-weight: lighter"> <span class="underlined"><%= charity.name %></span>  </h2>
+            <h3> <%= charity.mission.truncate_words(8) %> </h3>
+            <p> <%= charity.bio.truncate_words(5) %> </p>
           </div>
-          <div>
-            <h4> Ongoing fundraisers for this charity</h4>
+          <div class="left-text">
+            <h3> Ongoing fundraisers for this charity</h3>
               <% charity.user.fundraisers.each do |fundraiser| %>
               <%= link_to fundraiser.title, fundraiser_path(fundraiser) %>
             <% end %>
