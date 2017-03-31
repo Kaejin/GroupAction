@@ -7,7 +7,7 @@
 
     <!-- edit -->
     <% if @charity.user == current_user %>
-      <h3> <%= link_to "edit", edit_charity_path, style: "color: $off-complimentary" %> </h3>
+      <h3 class="off-complimentary-link opacity-link"> <%= link_to "edit", edit_charity_path %> </h3>
     <% end %>
 
   </div>

@@ -57,3 +57,9 @@ span.goalAmount {
     opacity: 0.5;
   }
 }
+
+.off-complimentary-link {
+  a {
+    color: $off-complimentary;
+  }
+}
