@@ -3,7 +3,7 @@
     <h1> <%= @charity.name  %> is making a difference today</h1>
 
     <!-- Money raised -->
-    <h3> £<%= @charity.total_raised.ceil %> raised from <%= @charity.user.fundraisers.count %> fundraiser(s) </h3>
+    <h3> £<%= @charity.total_raised.ceil %> raised from <%= @charity.number_donations %> donations </h3>
 
     <!-- edit -->
     <% if @charity.user == current_user %>
