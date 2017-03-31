@@ -58,15 +58,17 @@
     var mywindow = $(window);
     var mypos = mywindow.scrollTop();
     mywindow.scroll(function() {
-      if(mywindow.scrollTop() > mypos)
-      {
-          $('#home-navbar').fadeOut();
+      if <% !user_signed_in? %> {
+        if(mywindow.scrollTop() > mypos)
+        {
+            $('#home-navbar').fadeOut();
+        }
+        else
+        {
+            $('#home-navbar').fadeIn();
+        }
+        mypos = mywindow.scrollTop();
       }
-      else
-      {
-          $('#home-navbar').fadeIn();
-      }
-      mypos = mywindow.scrollTop();
    });
   </script>
 <% end %>
