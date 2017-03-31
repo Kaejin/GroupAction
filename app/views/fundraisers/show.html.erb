@@ -135,17 +135,20 @@
     <div class="col-xs-12">
       <h1 class="brand-color" style="font-weight: lighter">News</h1>
       <% @fundraiser.fundraiser_updates.each do |update| %>
-        <div>
-          <h2>
-          <%= update.title %>  <%= link_to edit_fundraiser_fundraiser_update_path(@fundraiser, update) do %>
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-          <% end %>
-          <%= link_to fundraiser_fundraiser_update_path(@fundraiser, update), method: 'delete', :data => {:confirm => 'Are you sure?'} do %>
-            <i class="fa fa-trash-o" aria-hidden="true"></i>
-          <% end %>
-          </h2>
-          <p> <%= update.message.truncate_words(140) %></p>
-          <p> <%= link_to "see more of this update", fundraiser_fundraiser_update_path(@fundraiser, update)  %></p>
+        <div class="row">
+          <div class="col-sm-6">
+            <h2 class="opacity-link">
+            <%= update.title %>  <%= link_to edit_fundraiser_fundraiser_update_path(@fundraiser, update) do %>
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to fundraiser_fundraiser_update_path(@fundraiser, update), method: 'delete', :data => {:confirm => 'Are you sure?'} do %>
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <% end %>
+            </h2>
+          </div>
+          <div class="col-sm-6">
+            <p> <%= update.message.truncate_words(40) %> <%= link_to "read more...", fundraiser_fundraiser_update_path(@fundraiser, update)  %></p>
+          </div>
         </div>
       <% end %>
 
@@ -154,6 +157,7 @@
       <%= link_to "Add a new update", new_fundraiser_fundraiser_update_path(@fundraiser), class: "btn btn-primary" %>
     <% end %>
     </div>
+  </div>
 
 <!-- Events for the fundraiser -->
   <div class="row">
