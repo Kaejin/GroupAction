@@ -23,3 +23,21 @@
     border-radius: 50%;
   }
 }
+
+.flexbox-space-btwn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 400px) {
+  .flexbox-space-btwn {
+    display: flex;
+    flex-direction: column;
+    .small-img {
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

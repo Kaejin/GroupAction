@@ -7,3 +7,9 @@
 .gallery-image:hover {
   opacity: 0.9;
 }
+
+.small-img {
+  img {
+    width: 20vw;
+  }
+}
