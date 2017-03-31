@@ -14,9 +14,11 @@
 
 
   <!-- notifications tab for signed in admin -->
+  <p>
     <% if user_signed_in? && current_user.admin == true && User.where(is_charity: true, verified: false).count > 0 %>
-         There are <%= User.where(is_charity: true, verified: false).count %> <%= link_to "users to verify", rails_admin_path%>
+         There are <%= User.where(is_charity: true, verified: false).count %> <%= link_to "users to verify", rails_admin_path, class: "home-sign-up-btn btn text-center"%>
     <% end %>
+  </p>
 
   <div id="home-nav-right">
 
