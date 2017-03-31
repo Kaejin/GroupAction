@@ -1,16 +1,16 @@
 <div class="container">
 
   <% @charities.each do |charity| %>
-    <div class="row thin-header index-page">
+    <div class="row thin-header">
       <div class="col-xs-12">
-        <div class="flexbox-space-btwn">
+        <div class="flexbox-space-btwn index-page">
           <div class="small-img">
            <%= image_tag 'library/crowd.jpg' %>
           </div>
           <div>
             <h2> <%= charity.name %> (name of charity) </h2>
             <h3> <%= charity.mission.truncate_words(8) %> (mission of charity) </h3>
-            <h4> <%= charity.bio.truncate_words(5) %> (bio of charity) </h4>
+            <p> <%= charity.bio.truncate_words(5) %> (bio of charity) </p>
           </div>
           <div>
             <h4> Ongoing fundraisers for this charity</h4>
