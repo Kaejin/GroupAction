@@ -7,7 +7,7 @@
           <div class="small-img">
            <%= cl_image_tag charity.photos.first.path %>
           </div>
-          <div class="left-text" style="width: 30vw;">
+          <div class="left-text" style="min-width: 30vw">
             <h2 class="brand-color"  style="font-weight: lighter"> <span class="underlined"><%= charity.name %></span>  </h2>
             <h3> <%= charity.mission.truncate_words(8) %> </h3>
             <p> <%= charity.bio.truncate_words(5) %> </p>
