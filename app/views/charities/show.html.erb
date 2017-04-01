@@ -13,15 +13,26 @@
   </div>
 </div>
 
+<!-- REMINDER TO SELF: CHANGE THIS TO A H2 HEADING (ABOUT) WITH TWO COL-SM-6 FOR 'BIO' AND 'MISSION' -->
 
 <div class="container">
-
-
-  <!-- Bio/Mission -->
-  <div class="outlined-box" style="margin-top: 30px">
-    <p> <%=  @charity.bio  %> </p>
-    <p> Mission: <%= @charity.mission %>  </p>
+  <div class="row">
+    <div class="text-center"><h2 style="font-weight: lighter">About <%= @charity.name %></h2></div>
+    <div class="col-sm-6">
+      <!-- Bio -->
+      <div class="outlined-box" style="margin-top: 30px">
+        <h3 style="font-weight: lighter; margin-top: 0px" class="text-center">Bio</h3>
+        <p class="brand-color"> <%=  @charity.bio  %> </p>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="outlined-box" style="margin-top: 30px">
+        <h3 style="font-weight: lighter; margin-top: 0px" class="text-center">Our Mission</h3>
+        <p class="brand-color"> <%= @charity.mission %>  </p>
+      </div>
+    </div>
   </div>
+
 
 
   <!-- photos v2 -->
