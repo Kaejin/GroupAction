@@ -1,25 +1,38 @@
-<div id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.075) 0%, rgba(0, 0, 0, 0.5)), url('<%= cl_image_path @charity.photos.first.path %>'); background-size: cover; background-position: center; background-attachment: fixed;">
-  <div class="text-center" >
-    <h1> <%= @charity.name  %> is making a difference today</h1>
+<div id="home-banner" style="background-image: linear-gradient(-225deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5)), url('<%= cl_image_path @charity.photos.first.path %>'); background-size: cover; background-position: center; background-attachment: fixed;">
+  <div class="text-center" style="color: white; text-shadow: 1px 1px 2px grey;">
+    <h1> <span class="off-complimentary" style="text-shadow: 1px 1px 2px #34353A;"><%= @charity.name  %></span> is making a difference today</h1>
 
     <!-- Money raised -->
     <h3> £<%= @charity.total_raised.ceil %> raised from <%= @charity.number_donations %> donations </h3>
 
     <!-- edit -->
     <% if @charity.user == current_user %>
-      <h3> <%= link_to "edit", edit_charity_path %> </h3>
+      <h3 class="off-complimentary-link opacity-link"> <%= link_to "edit", edit_charity_path %> </h3>
     <% end %>
 
   </div>
 </div>
 
+<!-- REMINDER TO SELF: CHANGE THIS TO A H2 HEADING (ABOUT) WITH TWO COL-SM-6 FOR 'BIO' AND 'MISSION' -->
 
 <div class="container">
+  <div class="row">
+    <div class="text-center"><h2 style="font-weight: lighter">About <%= @charity.name %></h2></div>
+    <div class="col-sm-6">
+      <!-- Bio -->
+      <div class="outlined-box" style="margin-top: 30px">
+        <h3 style="font-weight: lighter; margin-top: 0px" class="text-center">Bio</h3>
+        <p class="brand-color"> <%=  @charity.bio  %> </p>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="outlined-box" style="margin-top: 30px">
+        <h3 style="font-weight: lighter; margin-top: 0px" class="text-center">Our Mission</h3>
+        <p class="brand-color"> <%= @charity.mission %>  </p>
+      </div>
+    </div>
+  </div>
 
-
-  <!-- Bio/Mission -->
-  <p> Bio: <%=  @charity.bio  %> </p>
-  <p> Mission: <%= @charity.mission %>  </p>
 
 
   <!-- photos v2 -->
