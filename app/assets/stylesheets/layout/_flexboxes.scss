@@ -1,3 +1,15 @@
+.flex-left {
+  display: flex;
+  justify-content: space-between;
+  width: 50%
+}
+
+.flex-right {
+  display: flex;
+  justify-content: space-between;
+  width: 50%
+}
+
 .flexbox-space-around {
   display: flex;
   justify-content: space-around;
