@@ -19,6 +19,7 @@
           <!-- Amount fundraised + friends -->
           <div class="col-xs-2">
             <span class="off-complimentary">£<%= fundraiser.total_raised.ceil %></span> of <span class="off-complimentary">£<%= fundraiser.target.ceil %></span> raised
+            <div id="donor_counter"></div>
             <p> Facebook friends etx </p>
             <% if user_signed_in? %>
 
@@ -52,3 +53,5 @@
       </div>
   <% end %>
 </div>
+
+
