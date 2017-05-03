@@ -1,22 +1,27 @@
 class VolunteerPolicy < ApplicationPolicy
 
   def new?
-    true
+    user.is_charity && user.verified && user.charity.present?
   end
 
   def create?
+    user.is_charity && user.verified && user.charity.present?
+  end
+
+  def show?
     true
   end
 
+
   def edit?
-    true
+    user.verified && record.user == user
   end
 
   def update?
-    true
+    user.verified && record.user == user
   end
 
   def destroy?
-    true
+    user.verified && record.user == user
   end
 end
