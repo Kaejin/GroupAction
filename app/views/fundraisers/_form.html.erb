@@ -7,6 +7,7 @@
           <%= simple_form_for @fundraiser do |f| %>
 
             <%= f.input :title %>
+            <%= f.input :goal, label: :Goal, collection: ['Save lives', 'Alleviate Poverty', 'Nature Protection'], default: 'Save lives' %>
             <%= f.input :target %>
             <%= f.input :end_date %>
             <%= f.input :photos, as: :attachinary %>

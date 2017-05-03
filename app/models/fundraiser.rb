@@ -5,6 +5,7 @@ class Fundraiser < ApplicationRecord
   has_many :fundraiser_videos
   has_many :fundraiser_updates
   has_many :offline_donations, as: :imageable
+  validates :goal, inclusion: { in: ['Save lives', 'Alleviate Poverty', 'Nature Protection'], message: "%{value} is not a valid selection" }
   has_attachments :photos, maximum: 5
 
   #has_many :event_donations, through: :event
