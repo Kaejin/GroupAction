@@ -5,9 +5,10 @@
 
     <!-- basic information -->
     <!-- <div class="section-seperator"> -->
-    <h1>
-      <%= @fundraiser.title %>
-    </h1>
+      <h1>
+        <%= link_to @fundraiser.user.charity.name, charity_path(@fundraiser.user.charity) %> : <%= @fundraiser.title %>
+      </h1>
+      <h3 style="margin: 0"> Help <%= @fundraiser.goal %> today </h3>
 
     <div class="col-xs-12 col-md-6" style="padding-top: 30px">
         <%= image_tag "library/baby.jpg", class: "half-page-image" %>
@@ -142,7 +143,6 @@
           </div>
 
           <div id="links col-sm-6">
-            <h2> Photos</h2>
               <% @fundraiser.photos.each do |photo| %>
                 <%= link_to cl_image_path photo.path do %>
                   <%= cl_image_tag photo.path, width: 300, crop: :fill, class: "gallery-image"%>
@@ -186,21 +186,24 @@
   </div>
 
 <!-- Events for the fundraiser -->
-  <div class="row">
-    <h2> Events for the fundraiser <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn medium-button hvr-grow" %> </h2>
-    <% @fundraiser.events.each do |event| %>
-      <div class="col-xs-12 col-sm-6">
-        <div class="white-box">
-          <div>
-            <%= cl_image_tag event.photos.first.path, class: "thumbnail-img " unless event.photos.first.nil? %>
-          </div>
-          <div style="display: flex; flex-direction: column; justify-content: space-between; padding-left: 20px" class="opacity-link">
-            <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %>
-            <p>Total raised: <span class="bold-off-brand">£<%= event.total_raised.ceil %></span> </p>
+  <div class="row underlined" style="padding-bottom: 20px">
+    <div class="col-xs-12">
+      <h1 class="brand-color" style="font-weight: lighter">Events for the Fundraiser</h1>
+        <%= link_to "Create event", new_fundraiser_event_path(@fundraiser), class: "btn btn-primary" %>
+      <% @fundraiser.events.each do |event| %>
+        <div class="col-xs-12 col-sm-6">
+          <div class="white-box">
+            <div>
+              <%= cl_image_tag event.photos.first.path, class: "thumbnail-img " unless event.photos.first.nil? %>
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: space-between; padding-left: 20px" class="opacity-link">
+              <%= link_to event.title, fundraiser_event_path(@fundraiser, event)  %>
+              <p>Total raised: <span class="bold-off-brand">£<%= event.total_raised.ceil %></span> </p>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
 
