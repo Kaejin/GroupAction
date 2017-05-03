@@ -5,14 +5,10 @@
 
     <!-- basic information -->
     <!-- <div class="section-seperator"> -->
-    <div class="flexbox-space-btwn">
       <h1>
-        <%= @fundraiser.title %>
+        <%= link_to @fundraiser.user.charity.name, charity_path(@fundraiser.user.charity) %> : <%= @fundraiser.title %>
       </h1>
-      <h1>
-        <%= @fundraiser.goal %>
-      </h1>
-    </div>
+      <h3 style="margin: 0"> Help <%= @fundraiser.goal %> today </h3>
 
     <div class="col-xs-12 col-md-6" style="padding-top: 30px">
         <%= image_tag "library/baby.jpg", class: "half-page-image" %>
