@@ -1,0 +1,57 @@
+!-- hiding sign up information if user is signed in -->
+<% unless user_signed_in? %>
+  <!-- optional parallax panels -->
+  <div class="panel-overlay content">
+    <div class="panel-inner">
+    <!-- end of optional parallax panels -->
+
+      <div id="signup-info">
+        <div class="container">
+
+          <!-- sign up as a user  -->
+          <div class="row">
+            <div class="col-xs-12 hover-background-color">
+              <div class="row">
+                <div class="col-sm-6" style="padding: 20px">
+                  <h2 class="text-center">Sign up as a User</h2>
+                  <p class="text-center" style="color: black">Do something good today. Sign up to create charity events and donate to causes you care about. Croissant jelly-o icing. Pie halvah toffee gingerbread I love. Croissant cookie powder sugar plum I love cookie.</p>
+                  <div class="text-center">
+                    <%= link_to "Click Here", new_user_registration_path(is_charity: false), class: "text-center btn btn-lg top-margin btn-transparent" %>
+                  </div>
+                </div>
+                <div class="col-sm-6" style="padding: 0px;">
+                  <%= image_tag "library/crowd.jpg", style: "height: 320px; object-fit: cover;" %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-xs-12 hover-background-color">
+
+            <!-- Sign up as a charity -->
+              <div class="row">
+                <div class="col-sm-6" style="padding: 0px;">
+                  <%= image_tag "library/franklin.jpg", style: "height: 320px; object-fit: cover;"%>
+                </div>
+                <div class="col-sm-6" style="padding: 20px">
+                  <h2 class="text-center">Sign up as a Charity</h2>
+                  <p class="text-center" style="color: black"> Sign up as a charity and one of our team will get back to you</p>
+                  <div class="text-center">
+                    <%= link_to "Click Here", new_user_registration_path(is_charity: true), class: "text-center btn btn-lg top-margin btn-transparent" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- user information -->
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+<% end %>
