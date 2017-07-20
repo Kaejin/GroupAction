@@ -9,7 +9,6 @@
 
         <h2>TRANSPARENT CHARITY. DELIVERABLE PROJECTS.</h2>
 
-
           <div class="flexbox-space-around to-be-hidden ">
             <div class="card cardA">
               <h2>People</h2>
@@ -45,15 +44,15 @@
               Text Description for Dignity
               </p>
             </div>
-
-
           </div>
 
-            <div class="btn-hide">
-              <p> Go!</p>
+          <div class="row">
+            <div class="col-xs-offset-5 col-xs-2 btn-hide text-center">
+              <p>Go</p>
             </div>
-
-          <%= link_to "Go", fundraisers_path, class: "btn btn-primary btn-lg top-margin btn-hidden hidden" %>
+              <%= link_to "Go", fundraisers_path, class: "btn btn-primary btn-lg top-margin text-center btn-hidden hidden" %>
+              <p class="hidden btn-hidden reselect-selection"> I want to re-do my selection!</p>
+          </div>
 
 
       </div>
@@ -123,6 +122,14 @@ $("div.btn-hide").click(function() {
   $(this).addClass("hidden");
   $("div.cardB").removeClass("hidden")
   $(".btn-hidden").removeClass("hidden");
+});
+
+$(".reselect-selection").click(function() {
+  $("div.cardB").addClass("hidden");
+  $("div.cardA").removeClass("hidden");
+  $("div.btn-hide").removeClass("hidden");
+  $(".btn-hidden").addClass("hidden");
+  $(this).addClass("hidden");
 });
 
   </script>

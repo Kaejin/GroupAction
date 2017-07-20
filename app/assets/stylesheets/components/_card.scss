@@ -6,7 +6,7 @@
   background-size: cover !important;
   color: white;
   position: relative;
-  border-color: grey;
+  border-color: white;
   border-style: solid;
 }
 .card-user {
@@ -48,6 +48,18 @@
 
 .checked {
   font-weight: bold;
+  background-color: white;
+  opacity: 0.7;
+  color: $off-brand;
+  border-color: $off-brand
+}
+
+.cardA, .cardB {
+  &:hover {
+    background-color: white;
+    color: $off-brand;
+    opacity: 0.7;
+  }
 }
 
 .unchecked {
