@@ -1,10 +1,13 @@
 .card {
+  margin: 15px;
   height: 200px;
   width: 300px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   color: white;
   position: relative;
+  border-color: grey;
+  border-style: solid;
 }
 .card-user {
   position: absolute;
@@ -39,6 +42,14 @@
   background: black;
   opacity: 0;
 }
-.card-link:hover{
+.card-link:hover {
   opacity: 0.1;
+}
+
+.checked {
+  font-weight: bold;
+}
+
+.unchecked {
+  font-style: italic;
 }

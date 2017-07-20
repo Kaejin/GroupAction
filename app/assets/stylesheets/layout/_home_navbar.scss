@@ -16,6 +16,13 @@
 }
 
 
+
+#home-nav-left {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 .home-sign-up-btn {
   background-color: $off-complimentary;
   border-radius: 3px;

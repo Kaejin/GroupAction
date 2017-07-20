@@ -8,22 +8,52 @@
       <div class="text-center" id="home-banner-caption">
 
         <h2>TRANSPARENT CHARITY. DELIVERABLE PROJECTS.</h2>
-          <%= link_to "Go", fundraisers_path, class: "btn btn-primary btn-lg top-margin" %>
 
 
-          <div class="flexbox-space-around">
+          <div class="flexbox-space-around to-be-hidden ">
             <div class="card cardA">
-              <h2>Option A</h2>
+              <h2>People</h2>
+              <p class="card-description">
+              Text Description for People
+              </p>
+            </div>
+
+            <div class="card cardB hidden">
+              <h2>Donate Money</h2>
+              <p class="card-description">
+              This is where you donate money
+              </p>
             </div>
 
             <div class="card cardA">
-              <h2>Option B</h2>
+              <h2>Planet</h2>
+              <p class="card-description">
+              Text Description for Planet
+              </p>
             </div>
 
-            <div class="card cardA">
-              <h2>Option C</h2>
+            <div class="card cardB hidden">
+              <h2>Donate Time</h2>
+              <p class="card-description">
+              This is where you donate Time
+              </p>
             </div>
+
+            <div class="card cardA checked">
+              <h2>Dignity</h2>
+              <p class="card-description">
+              Text Description for Dignity
+              </p>
+            </div>
+
+
           </div>
+
+            <div class="btn-hide">
+              <p> Go!</p>
+            </div>
+
+          <%= link_to "Go", fundraisers_path, class: "btn btn-primary btn-lg top-margin btn-hidden hidden" %>
 
 
       </div>
@@ -76,6 +106,28 @@
 
   </div>
 </div>
+
+<%= content_for(:after_js) do %>
+  <script>
+
+$("div.cardA").click(function() {
+  $( this ).toggleClass( "checked" );
+});
+
+$("div.cardB").click(function() {
+  $( this ).toggleClass( "checked" );
+});
+
+$("div.btn-hide").click(function() {
+  $("div.cardA").addClass("hidden");
+  $(this).addClass("hidden");
+  $("div.cardB").removeClass("hidden")
+  $(".btn-hidden").removeClass("hidden");
+});
+
+  </script>
+}
+<% end %>
 
 
 

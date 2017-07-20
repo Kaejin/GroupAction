@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503132239) do
+ActiveRecord::Schema.define(version: 20170720083539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(version: 20170503132239) do
     t.float    "amount_raised", default: 0.0
     t.boolean  "active",        default: true
     t.string   "goal"
+    t.string   "label"
     t.index ["user_id"], name: "index_fundraisers_on_user_id", using: :btree
   end
 

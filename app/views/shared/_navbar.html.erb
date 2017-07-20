@@ -1,21 +1,22 @@
 <div class="ga-navbar">
 
-  <div class="ga-nav-left">
-
   <div class="nav-logo">
     <%= link_to root_path, class: "small-nav-logo" do %>
       <%= image_tag "dark-globe-logo.png" %>
     <% end %>
   </div>
 
-  <!-- charities to be able to see other charities & ongoing fundraisers on left of screen -->
-  <% if user_signed_in? %>
-  <% if current_user.is_charity%>
-    <%= link_to "See our Affiliated Charities", charities_path, class: "" %>
-    <%= link_to "See Fundraisers", fundraisers_path, class: "" %>
-  <% end %>
-<% end %>
+  <div class="ga-nav-right">
 
+  <!-- charities to be able to see other charities & ongoing fundraisers on left of screen -->
+  <div>
+    <% if user_signed_in? %>
+    <% if current_user.is_charity%>
+      <%= link_to "See our Affiliated Charities", charities_path, class: "" %>
+      <%= link_to "See Fundraisers", fundraisers_path, class: "" %>
+    <% end %>
+  <% end %>
+  </div>
 
 
 </div>
