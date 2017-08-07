@@ -120,12 +120,11 @@
   <script>
 
 $("div.cardA1").hover(function() {
-$("div.card2").addClass("hidden");
-$("div.card3").addClass("hidden");
-$(this).addClass("width_100")
-$("div.card1").addClass("home_cardhover")
+$("div.card2").toggleClass("hidden");
+$("div.card3").toggleClass("hidden");
+$(this).toggleClass("width_100")
+$("div.card1").toggleClass("home_cardhover")
 });
-
 
 $("div.cardA2").hover(function() {
 $("div.card1").toggleClass("hidden");
