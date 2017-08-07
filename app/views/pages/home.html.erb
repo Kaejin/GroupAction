@@ -10,25 +10,30 @@
         <h2>TRANSPARENT CHARITY. DELIVERABLE PROJECTS.</h2>
 
           <div class="flexbox-space-around to-be-hidden ">
-            <div class="card cardA">
-              <h2>People</h2>
-              <p class="card-description">
-              Text Description for People
-              </p>
+
+            <div class="cardA1 flexbox-space-around">
+              <div class="card cardA card1 ">
+                <h2>People</h2>
+                <p class="card-description">
+                Text Description for People
+                </p>
+              </div>
             </div>
 
-            <div class="card cardB hidden">
+            <div class="card cardB  hidden">
               <h2>Donate Money</h2>
               <p class="card-description">
               This is where you donate money
               </p>
             </div>
 
-            <div class="card cardA">
-              <h2>Planet</h2>
-              <p class="card-description">
-              Text Description for Planet
-              </p>
+            <div class="cardA2 flexbox-space-around">
+              <div class="card cardA card2">
+                <h2>Planet</h2>
+                <p class="card-description">
+                Text Description for Planet
+                </p>
+              </div>
             </div>
 
             <div class="card cardB hidden">
@@ -38,12 +43,17 @@
               </p>
             </div>
 
-            <div class="card cardA checked">
-              <h2>Dignity</h2>
-              <p class="card-description">
-              Text Description for Dignity
-              </p>
+            <div class="cardA3 flexbox-space-around">
+              <div class="card cardA checked card3">
+                <h2>Dignity</h2>
+                <p class="card-description">
+                Text Description for Dignity
+                </p>
+              </div>
             </div>
+
+
+
           </div>
 
           <div class="row">
@@ -109,9 +119,34 @@
 <%= content_for(:after_js) do %>
   <script>
 
-$("div.cardA").click(function() {
-  $( this ).toggleClass( "checked" );
+$("div.cardA1").hover(function() {
+$("div.card2").addClass("hidden");
+$("div.card3").addClass("hidden");
+$(this).addClass("width_100")
+$("div.card1").addClass("home_cardhover")
 });
+
+
+$("div.cardA2").hover(function() {
+$("div.card1").toggleClass("hidden");
+$("div.card3").toggleClass("hidden");
+$(this).toggleClass( "width_100" );
+$("div.card2").toggleClass("home_cardhover")
+});
+
+$("div.cardA3").hover(function() {
+$("div.card1").toggleClass("hidden");
+$("div.card2").toggleClass("hidden");
+$(this).toggleClass("width_100")
+$("div.card3").toggleClass( "home_cardhover" );
+});
+
+
+// TO CHECK WITH CLICK
+$("div.cardA").click(function() {
+  $(this ).toggleClass( "checked" );
+});
+
 
 $("div.cardB").click(function() {
   $( this ).toggleClass( "checked" );

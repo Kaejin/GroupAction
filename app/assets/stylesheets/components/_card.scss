@@ -54,12 +54,21 @@
   border-color: $off-brand
 }
 
-.cardA, .cardB {
-  &:hover {
-    background-color: white;
-    color: $off-brand;
-    opacity: 0.7;
-  }
+.home_cardhover {
+  background-color: white;
+  width: 100%;
+  color: $off-brand;
+  opacity: 0.7;
+  transition: all 1s;
+  height: 275px;
+}
+
+.width_100 {
+  width: 100%;
+}
+
+.home_card_normal {
+  transition: all 1s;
 }
 
 .unchecked {
