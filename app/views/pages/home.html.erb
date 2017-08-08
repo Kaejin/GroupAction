@@ -8,11 +8,35 @@
       <div class="text-center" id="home-banner-caption">
 
         <h2>TRANSPARENT CHARITY. DELIVERABLE PROJECTS.</h2>
+          <!-- shown on second screen once go is hit -->
+          <div class="row">
+            <div class="col-xs-offset-3 col-xs-6">
+
+              <div class="cardC col-xs-4">
+                <div class="cardC1">
+                  <p> C1 </p>
+                </div>
+
+              </div>
+
+              <div class="cardC col-xs-4">
+                <div class="cardC2">
+                  <p> C2 </p>
+                </div>
+              </div>
+
+              <div class="cardC col-xs-4">
+                <div class="cardC3">
+                  <p> C3 </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="flexbox-space-around to-be-hidden ">
 
             <div class="cardA1 flexbox-space-around">
-              <div class="card cardA card1 ">
+              <div class="card cardA card1 home_card_normal">
                 <h2>People</h2>
                 <p class="card-description">
                 Text Description for People
@@ -119,26 +143,58 @@
 <%= content_for(:after_js) do %>
   <script>
 
-$("div.cardA1").hover(function() {
-$("div.card2").toggleClass("hidden");
-$("div.card3").toggleClass("hidden");
-$(this).toggleClass("width_100")
-$("div.card1").toggleClass("home_cardhover")
+$("div.cardA1").mouseenter(function() {
+$("div.card2").hide()
+$("div.card3").hide()
+$(this).addClass("width_100")
+$("div.card1").addClass("home_cardhover")
 });
 
-$("div.cardA2").hover(function() {
-$("div.card1").toggleClass("hidden");
-$("div.card3").toggleClass("hidden");
-$(this).toggleClass( "width_100" );
-$("div.card2").toggleClass("home_cardhover")
+$("div.cardA1").mouseleave(function() {
+$("div.card1").removeClass("home_cardhover")
+$("div.card1").addClass("home_card_normal")
+$(this).removeClass("width_100")
+$("div.card1").hide()
+$("div.card1").fadeIn(1000)
+$("div.card2").fadeIn(1000)
+$("div.card3").fadeIn(1000)
 });
 
-$("div.cardA3").hover(function() {
-$("div.card1").toggleClass("hidden");
-$("div.card2").toggleClass("hidden");
-$(this).toggleClass("width_100")
-$("div.card3").toggleClass( "home_cardhover" );
+$("div.cardA2").mouseenter(function() {
+$("div.card1").hide()
+$("div.card3").hide()
+$(this).addClass("width_100")
+$("div.card2").addClass("home_cardhover")
 });
+
+$("div.cardA2").mouseleave(function() {
+$("div.card2").removeClass("home_cardhover")
+$("div.card2").addClass("home_card_normal")
+$(this).removeClass("width_100")
+$("div.card2").hide()
+$("div.card2").fadeIn(1000)
+$("div.card1").fadeIn(1000)
+$("div.card3").fadeIn(1000)
+});
+
+$("div.cardA3").mouseenter(function() {
+$("div.card2").hide()
+$("div.card3").hide()
+$(this).addClass("width_100")
+$("div.card3").addClass("home_cardhover")
+});
+
+$("div.cardA3").mouseleave(function() {
+$("div.card3").removeClass("home_cardhover")
+$("div.card3").addClass("home_card_normal")
+$(this).removeClass("width_100")
+$("div.card3").hide()
+$("div.card3").fadeIn(1000)
+$("div.card1").fadeIn(1000)
+$("div.card2").fadeIn(1000)
+});
+
+
 
 
 // TO CHECK WITH CLICK
